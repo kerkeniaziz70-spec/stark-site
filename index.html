@@ -99,7 +99,21 @@
       font-size: 0.92rem;
       padding-top: 16px;
     }
-    .flow-dot {
+    .hamburger-btn {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      padding: 8px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    .nav-cta-btn { display: inline-flex; }
+    @media (max-width: 768px) {
+      .nav-links { display: none !important; }
+      .hamburger-btn { display: flex !important; }
+      .nav-cta-btn { display: none !important; }
+    }
       position: absolute;
       top: 50%;
       left: 0;
@@ -412,16 +426,17 @@
 <nav>
   <div class="nav-logo">Stark</div>
 
-  <div class="nav-links hidden md:flex">
+  <div class="nav-links">
     <a href="#how-it-works">Comment ça marche</a>
     <a href="#why">Pourquoi Stark</a>
     <a href="#pricing">Tarifs</a>
     <a href="#secteurs">Secteurs</a>
+    <a href="#faq">FAQ</a>
   </div>
 
   <div style="display:flex; align-items:center; gap:12px;">
-    <a href="formulaire.html" class="btn-primary hidden md:inline-flex" style="padding:10px 20px; font-size:0.85rem;">Demander une démo</a>
-    <button id="menuBtn" onclick="toggleMenu()" style="display:flex; flex-direction:column; gap:5px; padding:8px; background:none; border:none; cursor:pointer;" class="md:hidden">
+    <a href="formulaire.html" class="btn-primary nav-cta-btn" style="padding:10px 20px; font-size:0.85rem;">Demander une démo</a>
+    <button id="menuBtn" onclick="toggleMenu()" class="hamburger-btn">
       <span class="bar" style="display:block; width:22px; height:2px; background:#1a1d2e; border-radius:2px; transition:all 0.3s;"></span>
       <span class="bar" style="display:block; width:22px; height:2px; background:#1a1d2e; border-radius:2px; transition:all 0.3s;"></span>
       <span class="bar" style="display:block; width:22px; height:2px; background:#1a1d2e; border-radius:2px; transition:all 0.3s;"></span>
@@ -433,6 +448,8 @@
   <a href="#how-it-works" onclick="closeMenu()" style="display:block; padding:14px 16px; color:#374151; font-weight:600; font-size:0.95rem; text-decoration:none; border-radius:12px; transition:background 0.2s;" onmouseover="this.style.background='#f1f5ff'" onmouseout="this.style.background='transparent'">Comment ça marche</a>
   <a href="#why" onclick="closeMenu()" style="display:block; padding:14px 16px; color:#374151; font-weight:600; font-size:0.95rem; text-decoration:none; border-radius:12px; transition:background 0.2s;" onmouseover="this.style.background='#f1f5ff'" onmouseout="this.style.background='transparent'">Pourquoi Stark</a>
   <a href="#pricing" onclick="closeMenu()" style="display:block; padding:14px 16px; color:#374151; font-weight:600; font-size:0.95rem; text-decoration:none; border-radius:12px; transition:background 0.2s;" onmouseover="this.style.background='#f1f5ff'" onmouseout="this.style.background='transparent'">Tarifs</a>
+  <a href="#secteurs" onclick="closeMenu()" style="display:block; padding:14px 16px; color:#374151; font-weight:600; font-size:0.95rem; text-decoration:none; border-radius:12px; transition:background 0.2s;" onmouseover="this.style.background='#f1f5ff'" onmouseout="this.style.background='transparent'">Secteurs</a>
+  <a href="#faq" onclick="closeMenu()" style="display:block; padding:14px 16px; color:#374151; font-weight:600; font-size:0.95rem; text-decoration:none; border-radius:12px; transition:background 0.2s;" onmouseover="this.style.background='#f1f5ff'" onmouseout="this.style.background='transparent'">FAQ</a>
   <a href="formulaire.html" onclick="closeMenu()" class="btn-primary" style="margin-top:8px; text-align:center;">Demander une démo</a>
 </div>
 
@@ -760,7 +777,7 @@
   </section>
 
   <div class="divider"></div>
-  <section style="padding:100px 0;">
+  <section id="faq" style="padding:100px 0;">
     <div style="max-width:800px; margin:0 auto; padding:0 24px;">
       <span class="section-eyebrow">FAQ</span>
       <h2 style="font-size:clamp(2rem,4vw,3rem); font-weight:800; letter-spacing:-0.02em;">Questions fréquentes</h2>
@@ -1001,6 +1018,8 @@
       <a href="#mentions-legales" style="color:#9ca3af; font-size:0.82rem; text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='#4f8dff'" onmouseout="this.style.color='#9ca3af'">Mentions légales</a>
       <a href="#mentions-legales" style="color:#9ca3af; font-size:0.82rem; text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='#4f8dff'" onmouseout="this.style.color='#9ca3af'">Politique de confidentialité</a>
       <a href="https://mail.google.com/mail/?view=cm&to=starkagency01@gmail.com" target="_blank" rel="noopener" style="color:#9ca3af; font-size:0.82rem; text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='#4f8dff'" onmouseout="this.style.color='#9ca3af'">starkagency01@gmail.com</a>
+      <span style="color:#e8ecf4;">|</span>
+      <a href="tel:+21620735049" style="color:#9ca3af; font-size:0.82rem; text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='#4f8dff'" onmouseout="this.style.color='#9ca3af'">+216 20 735 049</a>
     </div>
   </div>
 </footer>
