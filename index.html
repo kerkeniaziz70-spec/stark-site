@@ -32,7 +32,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
@@ -47,12 +47,142 @@
     body {
       background-color: #f8f9fc;
       color: #1a1d2e;
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Inter', sans-serif;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
     }
 
-    h1, h2, h3, h4 { font-family: 'Syne', sans-serif; }
+    .faq-item {
+      border-radius: 16px;
+      border: 1px solid #e8ecf4;
+      background: #fff;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      transition: box-shadow 0.2s;
+    }
+    .faq-item[open] { box-shadow: 0 4px 20px rgba(79,141,255,0.1); border-color: rgba(79,141,255,0.2); }
+    .faq-summary {
+      padding: 20px 24px;
+      font-weight: 700;
+      color: #1a1d2e;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      list-style: none;
+      font-size: 0.95rem;
+      gap: 12px;
+    }
+    .faq-summary::-webkit-details-marker { display: none; }
+    .faq-icon {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+    }
+    .faq-plus {
+      color: #4f8dff;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+      transition: transform 0.2s;
+    }
+    .faq-item[open] .faq-plus { transform: rotate(45deg); }
+    .faq-body {
+      padding: 0 24px 20px 74px;
+      color: #6b7280;
+      line-height: 1.7;
+      border-top: 1px solid #f1f3f9;
+      font-size: 0.92rem;
+      padding-top: 16px;
+    }
+    .flow-dot {
+      position: absolute;
+      top: 50%;
+      left: -8px;
+      transform: translateY(-50%);
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #ef4444 30%, rgba(239,68,68,0.3) 100%);
+      box-shadow: 0 0 8px rgba(239,68,68,0.7), 0 0 16px rgba(239,68,68,0.3);
+      animation: travelDot 2.4s ease-in-out infinite;
+    }
+    @keyframes travelDot {
+      0%   { left: -8px; opacity: 0; }
+      8%   { opacity: 1; }
+      92%  { opacity: 1; }
+      100% { left: calc(100% - 6px); opacity: 0; }
+    }
+    @media (max-width: 640px) {
+      .flow-line-desktop { display: none !important; }
+      .flow-nodes { gap: 32px !important; }
+      #sectorPoints { grid-template-columns: 1fr !important; }
+    }
+    .sector-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 20px 12px;
+      border-radius: 16px;
+      border: 1.5px solid #e8ecf4;
+      background: #fff;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    }
+    .sector-card:hover {
+      border-color: #4f8dff;
+      box-shadow: 0 4px 16px rgba(79,141,255,0.12);
+      transform: translateY(-2px);
+    }
+    .sector-card.active {
+      border-color: #4f8dff;
+      background: linear-gradient(135deg, rgba(79,141,255,0.08), rgba(124,58,237,0.06));
+      box-shadow: 0 4px 20px rgba(79,141,255,0.18);
+      transform: translateY(-2px);
+    }
+    .sc-icon { font-size: 1.8rem; line-height: 1; display: block; }
+    .sc-label { font-size: 0.78rem; font-weight: 600; color: #374151; line-height: 1.3; display: block; }
+    .sector-card.active .sc-label { color: #4f8dff; }
+    @media (max-width: 768px) { .sectors-grid { grid-template-columns: repeat(3, 1fr) !important; } }
+    @media (max-width: 480px) { .sectors-grid { grid-template-columns: repeat(2, 1fr) !important; } }
+    .sector-point {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: #4b5563;
+      font-size: 0.93rem;
+      line-height: 1.5;
+    }
+    .sector-point::before {
+      content: '✓';
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #4f8dff, #7c3aed);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    @media (max-width: 640px) {
+      .stats-grid { grid-template-columns: repeat(2,1fr) !important; }
+      .stats-grid > div { border-right: none !important; border-bottom: 1px solid rgba(79,141,255,0.15); }
+      .stats-grid > div:nth-child(odd) { border-right: 1px solid rgba(79,141,255,0.15) !important; }
+      .stats-grid > div:last-child { border-bottom: none; }
+    }
 
     .mesh-bg {
       position: fixed;
@@ -75,7 +205,7 @@
     .btn-primary {
       display: inline-flex; align-items: center; justify-content: center; gap: 8px;
       padding: 14px 28px; border-radius: 14px;
-      font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem;
+      font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 0.95rem;
       letter-spacing: 0.02em; color: #fff;
       background: linear-gradient(135deg, #4f8dff 0%, #7c3aed 100%);
       border: none; cursor: pointer; transition: all 0.3s ease;
@@ -91,7 +221,7 @@
     .btn-secondary {
       display: inline-flex; align-items: center; justify-content: center; gap: 8px;
       padding: 14px 28px; border-radius: 14px;
-      font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.95rem;
+      font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 0.95rem;
       color: #374151;
       background: #fff;
       border: 1px solid #e2e8f0;
@@ -151,7 +281,7 @@
     }
 
     .step-number {
-      font-family: 'Syne', sans-serif; font-size: 3.5rem; font-weight: 800;
+      font-family: 'Manrope', sans-serif; font-size: 3.5rem; font-weight: 800;
       background: linear-gradient(135deg, #4f8dff, #7c3aed);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
       background-clip: text; line-height: 1;
@@ -205,7 +335,7 @@
     .form-input {
       width: 100%; padding: 14px 18px; border-radius: 14px;
       background: #f8f9fc; border: 1px solid #e2e8f0;
-      color: #1a1d2e; font-family: 'DM Sans', sans-serif;
+      color: #1a1d2e; font-family: 'Inter', sans-serif;
       font-size: 0.95rem; outline: none; transition: all 0.3s;
     }
 
@@ -249,7 +379,7 @@
     }
 
     .nav-logo {
-      font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.3rem;
+      font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 1.3rem;
       background: linear-gradient(135deg, #4f8dff, #7c3aed);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
@@ -286,6 +416,7 @@
     <a href="#how-it-works">Comment ça marche</a>
     <a href="#why">Pourquoi Stark</a>
     <a href="#pricing">Tarifs</a>
+    <a href="#secteurs">Secteurs</a>
   </div>
 
   <div style="display:flex; align-items:center; gap:12px;">
@@ -317,7 +448,7 @@
           L'employé qui ne dort jamais
         </div>
 
-        <h1 style="margin-top:28px; font-size:clamp(2.8rem,6vw,5rem); line-height:1.05; font-weight:900; letter-spacing:-0.03em; font-family:'Plus Jakarta Sans', sans-serif;">
+        <h1 style="margin-top:28px; font-size:clamp(2.8rem,6vw,5rem); line-height:1.05; font-weight:800; letter-spacing:-0.03em; font-family: 'Manrope', sans-serif;">
           Ne perdez plus<br>
           <span class="text-gradient-main">de clients</span><br>
           <span style="color:#1a1d2e; font-weight:800;">quand vous dormez.</span>
@@ -345,9 +476,9 @@
 
         <div class="card" style="padding:24px; position:relative; background:#fff;">
           <div style="display:flex; align-items:center; gap:12px; margin-bottom:20px; padding-bottom:16px; border-bottom:1px solid #e8ecf4;">
-            <div style="width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,#4f8dff,#8b5cf6);display:flex;align-items:center;justify-content:center;font-size:1.1rem; font-family:Syne,sans-serif; font-weight:900; color:white; letter-spacing:-0.05em;">S</div>
+            <div style="width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,#4f8dff,#8b5cf6);display:flex;align-items:center;justify-content:center;font-size:1.1rem; font-family: 'Manrope', sans-serif; font-weight:800; color:white; letter-spacing:-0.05em;">S</div>
             <div>
-              <p style="font-family:'Syne',sans-serif;font-weight:700;font-size:0.95rem;">Stark</p>
+              <p style="font-family: 'Manrope', sans-serif;font-weight:700;font-size:0.95rem;">Stark</p>
               <div style="display:flex;align-items:center;gap:6px;margin-top:2px;">
                 <div style="width:7px;height:7px;border-radius:50%;background:#22c55e;box-shadow:0 0 8px #22c55e;"></div>
                 <span style="font-size:0.75rem;color:#6b7280;">En ligne</span>
@@ -385,6 +516,32 @@
   </section>
 
   <div class="divider"></div>
+
+  <!-- ── RÉSULTATS CHIFFRÉS ── -->
+  <section style="padding:60px 0; background:linear-gradient(135deg, rgba(79,141,255,0.06) 0%, rgba(139,92,246,0.06) 100%);">
+    <div style="max-width:1100px; margin:0 auto; padding:0 24px;">
+      <div style="display:grid; gap:0; grid-template-columns:repeat(4,1fr); text-align:center;" class="stats-grid">
+        <div style="padding:32px 20px; border-right:1px solid rgba(79,141,255,0.15);">
+          <div style="font-size:clamp(2.2rem,4vw,3.2rem); font-weight:900; background:linear-gradient(135deg,#4f8dff,#7c3aed); -webkit-background-clip:text; -webkit-text-fill-color:transparent; letter-spacing:-0.03em; line-height:1;">&lt; 5 sec</div>
+          <div style="margin-top:10px; font-size:0.88rem; color:#6b7280; line-height:1.5;">Temps de réponse<br>moyen</div>
+        </div>
+        <div style="padding:32px 20px; border-right:1px solid rgba(79,141,255,0.15);">
+          <div style="font-size:clamp(2.2rem,4vw,3.2rem); font-weight:900; background:linear-gradient(135deg,#4f8dff,#7c3aed); -webkit-background-clip:text; -webkit-text-fill-color:transparent; letter-spacing:-0.03em; line-height:1;">100%</div>
+          <div style="margin-top:10px; font-size:0.88rem; color:#6b7280; line-height:1.5;">Des messages<br>reçoivent une réponse</div>
+        </div>
+        <div style="padding:32px 20px; border-right:1px solid rgba(79,141,255,0.15);">
+          <div style="font-size:clamp(2.2rem,4vw,3.2rem); font-weight:900; background:linear-gradient(135deg,#4f8dff,#7c3aed); -webkit-background-clip:text; -webkit-text-fill-color:transparent; letter-spacing:-0.03em; line-height:1;">24h/24</div>
+          <div style="margin-top:10px; font-size:0.88rem; color:#6b7280; line-height:1.5;">Disponibilité<br>sans interruption</div>
+        </div>
+        <div style="padding:32px 20px;">
+          <div style="font-size:clamp(2.2rem,4vw,3.2rem); font-weight:900; background:linear-gradient(135deg,#4f8dff,#7c3aed); -webkit-background-clip:text; -webkit-text-fill-color:transparent; letter-spacing:-0.03em; line-height:1;">70%</div>
+          <div style="margin-top:10px; font-size:0.88rem; color:#6b7280; line-height:1.5;">Des questions traitées<br>sans intervention humaine</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
   <section style="padding:60px 0;">
     <div style="max-width:1200px; margin:0 auto; padding:0 24px;">
       <div style="display:grid; gap:20px;" class="md:grid-cols-3 grid">
@@ -415,26 +572,52 @@
     <div style="max-width:1200px; margin:0 auto; padding:0 24px;">
       <span class="section-eyebrow">Processus</span>
       <h2 style="font-size:clamp(2rem,4vw,3rem); font-weight:800; letter-spacing:-0.02em;">Comment ça marche</h2>
+      <p style="margin-top:12px; color:#6b7280; font-size:1.05rem;">De la question du client à la réponse — en moins de 5 secondes.</p>
 
-      <div style="margin-top:48px; display:grid; gap:24px; position:relative;" class="md:grid-cols-3 grid">
-        <div style="position:absolute; top:40px; left:calc(16.6% + 20px); right:calc(16.6% + 20px); height:1px; background:linear-gradient(90deg, #4f8dff, #8b5cf6, #22d3ee); opacity:0.25;" class="hidden md:block"></div>
+      <!-- Flow diagram -->
+      <div style="margin-top:64px; position:relative; display:flex; align-items:center; justify-content:center;">
 
-        <div class="card" style="padding:36px;">
-          <div class="step-number">01</div>
-          <h3 style="font-size:1.15rem; font-weight:700; margin:16px 0 12px;">Connexion à votre activité</h3>
-          <p style="color:#6b7280; line-height:1.65; font-size:0.92rem;">Stark se connecte à vos informations : vos services, vos produits, vos horaires, vos prix.</p>
+        <!-- Connecting line behind nodes -->
+        <div style="position:absolute; top:36px; left:50%; transform:translateX(-50%); width:520px; height:2px; background:linear-gradient(90deg,#e8ecf4,#4f8dff,#7c3aed,#22d3ee,#e8ecf4); border-radius:2px; z-index:0;" class="flow-line-desktop">
+          <!-- Animated traveling dot -->
+          <div class="flow-dot"></div>
         </div>
 
-        <div class="card card-accent-violet" style="padding:36px;">
-          <div class="step-number">02</div>
-          <h3 style="font-size:1.15rem; font-weight:700; margin:16px 0 12px;">Compréhension de la demande</h3>
-          <p style="color:#6b7280; line-height:1.65; font-size:0.92rem;">L'agent comprend la question du client et identifie l'intention principale.</p>
-        </div>
+        <!-- Nodes -->
+        <div style="display:flex; align-items:flex-start; justify-content:center; gap:80px; position:relative; z-index:1; flex-wrap:wrap;" class="flow-nodes">
 
-        <div class="card card-accent-cyan" style="padding:36px;">
-          <div class="step-number">03</div>
-          <h3 style="font-size:1.15rem; font-weight:700; margin:16px 0 12px;">Réponse immédiate</h3>
-          <p style="color:#6b7280; line-height:1.65; font-size:0.92rem;">Le client reçoit une réponse claire, utile et orientée action.</p>
+          <div style="display:flex; flex-direction:column; align-items:center; gap:20px; width:140px;">
+            <div style="width:72px; height:72px; border-radius:22px; background:linear-gradient(135deg,#25d366,#128c7e); display:flex; align-items:center; justify-content:center; font-size:1.9rem; box-shadow:0 8px 28px rgba(37,211,102,0.35); border:3px solid #fff;">💬</div>
+            <div style="text-align:center;">
+              <div style="font-weight:700; font-size:0.95rem; color:#1a1d2e;">Client envoie</div>
+              <div style="font-size:0.8rem; color:#6b7280; margin-top:6px; line-height:1.5;">WhatsApp · Messenger<br>Instagram · Site web</div>
+            </div>
+          </div>
+
+          <div style="display:flex; flex-direction:column; align-items:center; gap:20px; width:140px;">
+            <div style="width:72px; height:72px; border-radius:22px; background:linear-gradient(135deg,#4f8dff,#7c3aed); display:flex; align-items:center; justify-content:center; font-size:1.9rem; box-shadow:0 8px 28px rgba(79,141,255,0.4); border:3px solid #fff;">⚡</div>
+            <div style="text-align:center;">
+              <div style="font-weight:700; font-size:0.95rem; color:#1a1d2e;">Stark analyse</div>
+              <div style="font-size:0.8rem; color:#6b7280; margin-top:6px; line-height:1.5;">Comprend l'intention<br>Consulte vos infos</div>
+            </div>
+          </div>
+
+          <div style="display:flex; flex-direction:column; align-items:center; gap:20px; width:140px;">
+            <div style="width:72px; height:72px; border-radius:22px; background:linear-gradient(135deg,#22d3ee,#4f8dff); display:flex; align-items:center; justify-content:center; font-size:1.9rem; box-shadow:0 8px 28px rgba(34,211,238,0.35); border:3px solid #fff;">✅</div>
+            <div style="text-align:center;">
+              <div style="font-weight:700; font-size:0.95rem; color:#1a1d2e;">Réponse envoyée</div>
+              <div style="font-size:0.8rem; color:#6b7280; margin-top:6px; line-height:1.5;">Claire, précise<br>en moins de 5 sec</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Badge -->
+      <div style="margin-top:52px; display:flex; justify-content:center;">
+        <div style="display:inline-flex; align-items:center; gap:10px; padding:12px 28px; border-radius:100px; background:linear-gradient(135deg,rgba(79,141,255,0.08),rgba(139,92,246,0.08)); border:1px solid rgba(79,141,255,0.2);">
+          <span style="font-size:1rem;">⏱</span>
+          <span style="font-size:0.88rem; font-weight:600; color:#1a1d2e;">Disponible 24h/24 · 7j/7 · Même la nuit et les jours fériés</span>
         </div>
       </div>
     </div>
@@ -443,39 +626,133 @@
   <div class="divider"></div>
   <section id="why" style="padding:100px 0;">
     <div style="max-width:1200px; margin:0 auto; padding:0 24px;">
-      <span class="section-eyebrow">Avantages</span>
-      <h2 style="font-size:clamp(2rem,4vw,3rem); font-weight:800; letter-spacing:-0.02em;">Pourquoi Stark</h2>
+      <div style="display:grid; gap:64px; align-items:center;" class="md:grid-cols-2 grid">
 
-      <div style="margin-top:48px; display:grid; gap:20px;" class="md:grid-cols-2 grid">
-        <div class="card" style="padding:36px; display:flex; gap:20px; align-items:flex-start;">
-          <div style="flex-shrink:0; width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,#4f8dff,#7c3aed);display:flex;align-items:center;justify-content:center;font-size:1.2rem;box-shadow:0 0 20px rgba(79,141,255,0.3);">🎯</div>
-          <div>
-            <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:10px;">Réduit les pertes de clients</h3>
-            <p style="color:#6b7280; line-height:1.65; font-size:0.92rem;">Plus besoin d'attendre qu'un agent humain soit disponible pour répondre aux questions simples.</p>
+        <!-- LEFT: title + points + badges -->
+        <div>
+          <span class="section-eyebrow">Avantages</span>
+          <h2 style="font-size:clamp(2rem,4vw,3rem); font-weight:800; letter-spacing:-0.02em; margin-top:16px; line-height:1.15;">Pourquoi choisir<br><span class="text-gradient-main">Stark ?</span></h2>
+          <p style="margin-top:16px; color:#6b7280; font-size:1.05rem; line-height:1.7;">Un agent IA conçu pour le marché tunisien, qui travaille à votre place sans jamais s'arrêter.</p>
+
+          <div style="margin-top:36px; display:flex; flex-direction:column; gap:20px;">
+            <div style="display:flex; align-items:flex-start; gap:16px;">
+              <div style="flex-shrink:0; width:44px; height:44px; border-radius:14px; background:linear-gradient(135deg,rgba(79,141,255,0.15),rgba(79,141,255,0.05)); border:1px solid rgba(79,141,255,0.2); display:flex; align-items:center; justify-content:center; font-size:1.2rem;">🎯</div>
+              <div>
+                <h3 style="font-size:1rem; font-weight:700; color:#1a1d2e; margin-bottom:6px;">Zéro client perdu</h3>
+                <p style="color:#6b7280; line-height:1.6; font-size:0.9rem;">Plus besoin d'attendre — chaque message reçoit une réponse immédiate, même à 2h du matin.</p>
+              </div>
+            </div>
+            <div style="display:flex; align-items:flex-start; gap:16px;">
+              <div style="flex-shrink:0; width:44px; height:44px; border-radius:14px; background:linear-gradient(135deg,rgba(139,92,246,0.15),rgba(139,92,246,0.05)); border:1px solid rgba(139,92,246,0.2); display:flex; align-items:center; justify-content:center; font-size:1.2rem;">📈</div>
+              <div>
+                <h3 style="font-size:1rem; font-weight:700; color:#1a1d2e; margin-bottom:6px;">Plus de conversions</h3>
+                <p style="color:#6b7280; line-height:1.6; font-size:0.9rem;">Un prospect qui obtient une réponse tout de suite a bien plus de chances d'acheter ou de réserver.</p>
+              </div>
+            </div>
+            <div style="display:flex; align-items:flex-start; gap:16px;">
+              <div style="flex-shrink:0; width:44px; height:44px; border-radius:14px; background:linear-gradient(135deg,rgba(34,211,238,0.15),rgba(34,211,238,0.05)); border:1px solid rgba(34,211,238,0.2); display:flex; align-items:center; justify-content:center; font-size:1.2rem;">⚙️</div>
+              <div>
+                <h3 style="font-size:1rem; font-weight:700; color:#1a1d2e; margin-bottom:6px;">Moins de charge pour votre équipe</h3>
+                <p style="color:#6b7280; line-height:1.6; font-size:0.9rem;">Stark gère les questions répétitives — votre équipe se concentre sur ce qui a vraiment de la valeur.</p>
+              </div>
+            </div>
+            <div style="display:flex; align-items:flex-start; gap:16px;">
+              <div style="flex-shrink:0; width:44px; height:44px; border-radius:14px; background:linear-gradient(135deg,rgba(244,114,182,0.15),rgba(244,114,182,0.05)); border:1px solid rgba(244,114,182,0.2); display:flex; align-items:center; justify-content:center; font-size:1.2rem;">🔧</div>
+              <div>
+                <h3 style="font-size:1rem; font-weight:700; color:#1a1d2e; margin-bottom:6px;">Configuré pour votre activité</h3>
+                <p style="color:#6b7280; line-height:1.6; font-size:0.9rem;">Pas un chatbot générique — Stark apprend vos produits, vos règles, votre ton.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Badges -->
+          <div style="margin-top:36px; display:flex; flex-wrap:wrap; gap:10px;">
+            <span style="display:inline-flex; align-items:center; gap:6px; padding:8px 16px; border-radius:100px; border:1.5px solid #e8ecf4; background:#f8f9fc; font-size:0.8rem; font-weight:600; color:#4b5563;">🇹🇳 Conçu pour la Tunisie</span>
+            <span style="display:inline-flex; align-items:center; gap:6px; padding:8px 16px; border-radius:100px; border:1.5px solid #e8ecf4; background:#f8f9fc; font-size:0.8rem; font-weight:600; color:#4b5563;">⚡ Opérationnel en 7 jours</span>
+            <span style="display:inline-flex; align-items:center; gap:6px; padding:8px 16px; border-radius:100px; border:1.5px solid #e8ecf4; background:#f8f9fc; font-size:0.8rem; font-weight:600; color:#4b5563;">🔒 Données sécurisées</span>
           </div>
         </div>
 
-        <div class="card card-accent-violet" style="padding:36px; display:flex; gap:20px; align-items:flex-start;">
-          <div style="flex-shrink:0; width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,#8b5cf6,#ec4899);display:flex;align-items:center;justify-content:center;font-size:1.2rem;box-shadow:0 0 20px rgba(139,92,246,0.3);">📈</div>
-          <div>
-            <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:10px;">Améliore la conversion</h3>
-            <p style="color:#6b7280; line-height:1.65; font-size:0.92rem;">Un prospect qui obtient une réponse tout de suite a plus de chances d'acheter ou de réserver.</p>
+        <!-- RIGHT: comparison table -->
+        <div style="display:flex; justify-content:center; align-items:center;">
+          <div style="width:100%; max-width:440px; border-radius:24px; background:#fff; border:1px solid #e8ecf4; box-shadow:0 20px 60px rgba(79,141,255,0.1); overflow:hidden;">
+            <!-- Table header -->
+            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; background:#f8f9fc; border-bottom:1px solid #e8ecf4;">
+              <div style="padding:14px 16px; font-size:0.78rem; font-weight:700; color:#6b7280; text-transform:uppercase; letter-spacing:0.08em;">Tâche</div>
+              <div style="padding:14px 16px; font-size:0.78rem; font-weight:700; color:#6b7280; text-transform:uppercase; letter-spacing:0.08em; border-left:1px solid #e8ecf4;">Sans Stark</div>
+              <div style="padding:14px 16px; font-size:0.78rem; font-weight:700; color:#4f8dff; text-transform:uppercase; letter-spacing:0.08em; border-left:1px solid #e8ecf4; background:rgba(79,141,255,0.04);">Avec Stark ⚡</div>
+            </div>
+            <!-- Rows -->
+            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; border-bottom:1px solid #f1f3f9;">
+              <div style="padding:14px 16px; font-size:0.83rem; color:#4b5563; font-weight:500;">Répondre à une question</div>
+              <div style="padding:14px 16px; font-size:0.83rem; color:#9ca3af; border-left:1px solid #f1f3f9;">1–3 minutes</div>
+              <div style="padding:14px 16px; font-size:0.83rem; color:#22c55e; font-weight:700; border-left:1px solid #f1f3f9; background:rgba(79,141,255,0.02);">3–10 secondes</div>
+            </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; border-bottom:1px solid #f1f3f9;">
+              <div style="padding:14px 16px; font-size:0.83rem; color:#4b5563; font-weight:500;">Prendre un rendez-vous</div>
+              <div style="padding:14px 16px; font-size:0.83rem; color:#9ca3af; border-left:1px solid #f1f3f9;">3–5 minutes</div>
+              <div style="padding:14px 16px; font-size:0.83rem; color:#22c55e; font-weight:700; border-left:1px solid #f1f3f9; background:rgba(79,141,255,0.02);">10–30 secondes</div>
+            </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; border-bottom:1px solid #f1f3f9;">
+              <div style="padding:14px 16px; font-size:0.83rem; color:#4b5563; font-weight:500;">100 demandes / jour</div>
+              <div style="padding:14px 16px; font-size:0.83rem; color:#9ca3af; border-left:1px solid #f1f3f9;">6–8 heures</div>
+              <div style="padding:14px 16px; font-size:0.83rem; color:#22c55e; font-weight:700; border-left:1px solid #f1f3f9; background:rgba(79,141,255,0.02);">Quelques minutes</div>
+            </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; border-bottom:1px solid #f1f3f9;">
+              <div style="padding:14px 16px; font-size:0.83rem; color:#4b5563; font-weight:500;">Disponibilité</div>
+              <div style="padding:14px 16px; font-size:0.83rem; color:#9ca3af; border-left:1px solid #f1f3f9;">8h/jour max</div>
+              <div style="padding:14px 16px; font-size:0.83rem; color:#22c55e; font-weight:700; border-left:1px solid #f1f3f9; background:rgba(79,141,255,0.02);">24h/24, 7j/7</div>
+            </div>
+            <!-- Summary note -->
+            <div style="padding:16px 20px; background:linear-gradient(135deg,rgba(79,141,255,0.06),rgba(139,92,246,0.06)); border-top:1px solid rgba(79,141,255,0.12); display:flex; gap:10px; align-items:flex-start;">
+              <span style="font-size:1rem; flex-shrink:0;">🚀</span>
+              <p style="font-size:0.82rem; color:#4b5563; line-height:1.6; margin:0;"><strong style="color:#1a1d2e;">En résumé :</strong> Vos clients reçoivent une réponse instantanée, même la nuit, le week-end et les jours fériés.</p>
+            </div>
           </div>
         </div>
 
-        <div class="card card-accent-cyan" style="padding:36px; display:flex; gap:20px; align-items:flex-start;">
-          <div style="flex-shrink:0; width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,#22d3ee,#4f8dff);display:flex;align-items:center;justify-content:center;font-size:1.2rem;box-shadow:0 0 20px rgba(34,211,238,0.3);">⚙️</div>
-          <div>
-            <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:10px;">Réduit la charge humaine</h3>
-            <p style="color:#6b7280; line-height:1.65; font-size:0.92rem;">Votre équipe se concentre sur les cas complexes pendant que Stark gère le reste.</p>
-          </div>
-        </div>
+      </div>
+    </div>
+  </section>
 
-        <div class="card" style="padding:36px; display:flex; gap:20px; align-items:flex-start;">
-          <div style="flex-shrink:0; width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,#f472b6,#8b5cf6);display:flex;align-items:center;justify-content:center;font-size:1.2rem;box-shadow:0 0 20px rgba(244,114,182,0.3);">🔧</div>
-          <div>
-            <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:10px;">S'adapte à votre entreprise</h3>
-            <p style="color:#6b7280; line-height:1.65; font-size:0.92rem;">Vous pouvez le configurer selon vos produits, services, FAQ et règles métier.</p>
+  <div class="divider"></div>
+
+  <!-- ── SECTEURS ── -->
+  <section id="secteurs" style="padding:100px 0;">
+    <div style="max-width:1100px; margin:0 auto; padding:0 24px;">
+      <span class="section-eyebrow">Secteurs</span>
+      <h2 style="font-size:clamp(2rem,4vw,3rem); font-weight:800; letter-spacing:-0.02em;">Stark s'adapte à votre secteur</h2>
+      <p style="margin-top:12px; color:#6b7280; font-size:1.05rem;">Cliquez sur votre activité pour voir comment Stark travaille pour vous.</p>
+
+      <!-- Sector cards grid -->
+      <div style="margin-top:40px; display:grid; grid-template-columns:repeat(4, 1fr); gap:14px;" class="sectors-grid">
+        <button class="sector-card active" onclick="selectSector(this, 0)"><span class="sc-icon">🏥</span><span class="sc-label">Cabinets médicaux</span></button>
+        <button class="sector-card" onclick="selectSector(this, 1)"><span class="sc-icon">💆</span><span class="sc-label">Salons de beauté / Spas</span></button>
+        <button class="sector-card" onclick="selectSector(this, 2)"><span class="sc-icon">🍽</span><span class="sc-label">Restaurants</span></button>
+        <button class="sector-card" onclick="selectSector(this, 3)"><span class="sc-icon">☕</span><span class="sc-label">Cafés</span></button>
+        <button class="sector-card" onclick="selectSector(this, 4)"><span class="sc-icon">🏨</span><span class="sc-label">Hôtels / Maisons d'hôtes</span></button>
+        <button class="sector-card" onclick="selectSector(this, 5)"><span class="sc-icon">🏋️</span><span class="sc-label">Salles de sport</span></button>
+        <button class="sector-card" onclick="selectSector(this, 6)"><span class="sc-icon">🎓</span><span class="sc-label">Centres de formation / Auto-écoles</span></button>
+        <button class="sector-card" onclick="selectSector(this, 7)"><span class="sc-icon">🛍</span><span class="sc-label">Boutiques / E-commerce</span></button>
+        <button class="sector-card" onclick="selectSector(this, 8)"><span class="sc-icon">🚗</span><span class="sc-label">Concessionnaires / Garages</span></button>
+        <button class="sector-card" onclick="selectSector(this, 9)"><span class="sc-icon">🏠</span><span class="sc-label">Agences immobilières</span></button>
+        <button class="sector-card" onclick="selectSector(this, 10)"><span class="sc-icon">⚖️</span><span class="sc-label">Cabinets juridiques / Comptables</span></button>
+        <button class="sector-card" onclick="selectSector(this, 11)"><span class="sc-icon">🔧</span><span class="sc-label">Artisans / Techniciens</span></button>
+      </div>
+
+      <!-- Detail card -->
+      <div id="sectorCard" style="margin-top:28px; border-radius:20px; background:#fff; border:1px solid #e8ecf4; box-shadow:0 4px 24px rgba(79,141,255,0.07); overflow:hidden; transition:opacity 0.25s ease, transform 0.25s ease;">
+        <div style="padding:32px 36px; display:flex; align-items:flex-start; gap:20px; flex-wrap:wrap;">
+          <!-- Icon -->
+          <div id="sectorIconWrap" style="flex-shrink:0; width:56px; height:56px; border-radius:16px; background:linear-gradient(135deg,rgba(79,141,255,0.12),rgba(139,92,246,0.08)); border:1px solid rgba(79,141,255,0.15); display:flex; align-items:center; justify-content:center; font-size:1.6rem;">
+            <span id="sectorIcon"></span>
+          </div>
+          <!-- Content -->
+          <div style="flex:1; min-width:260px;">
+            <h3 id="sectorTitle" style="font-size:1.25rem; font-weight:800; color:#1a1d2e; margin-bottom:6px;"></h3>
+            <p id="sectorTagline" style="color:#4f8dff; font-weight:600; font-size:0.92rem; margin-bottom:20px; line-height:1.5;"></p>
+            <ul id="sectorPoints" style="display:grid; grid-template-columns:1fr 1fr; gap:10px; list-style:none; padding:0; margin:0;"></ul>
+            <a href="formulaire.html" class="btn-primary" style="display:inline-flex; margin-top:24px; padding:12px 24px; font-size:0.9rem;">Commencer avec Stark →</a>
           </div>
         </div>
       </div>
@@ -483,7 +760,109 @@
   </section>
 
   <div class="divider"></div>
-  <section style="padding:100px 0; position:relative; overflow:hidden;">
+  <section style="padding:100px 0;">
+    <div style="max-width:800px; margin:0 auto; padding:0 24px;">
+      <span class="section-eyebrow">FAQ</span>
+      <h2 style="font-size:clamp(2rem,4vw,3rem); font-weight:800; letter-spacing:-0.02em;">Questions fréquentes</h2>
+      <p style="margin-top:12px; color:#6b7280; font-size:1.05rem;">Tout ce que vous voulez savoir avant de vous lancer.</p>
+
+      <div style="margin-top:48px; display:flex; flex-direction:column; gap:12px;">
+
+        <details class="faq-item">
+          <summary class="faq-summary">
+            <div style="display:flex; align-items:center; gap:14px;">
+              <div class="faq-icon" style="background:linear-gradient(135deg,rgba(37,211,102,0.15),rgba(37,211,102,0.05)); border:1px solid rgba(37,211,102,0.2);">🇹🇳</div>
+              <span>Est-ce que Stark comprend le dialecte tunisien ?</span>
+            </div>
+            <span class="faq-plus">+</span>
+          </summary>
+          <div class="faq-body">Oui. Stark comprend et répond en darija tunisienne, en français et en arabe — et gère naturellement le mélange des trois dans une même conversation, comme le font vos clients au quotidien.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-summary">
+            <div style="display:flex; align-items:center; gap:14px;">
+              <div class="faq-icon" style="background:linear-gradient(135deg,rgba(79,141,255,0.15),rgba(79,141,255,0.05)); border:1px solid rgba(79,141,255,0.2);">💬</div>
+              <span>Sur quels canaux Stark peut-il répondre ?</span>
+            </div>
+            <span class="faq-plus">+</span>
+          </summary>
+          <div class="faq-body">Stark répond sur WhatsApp Business, Facebook Messenger, Instagram et votre site web. D'autres canaux sont en cours d'intégration — votre agent sera automatiquement mis à jour.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-summary">
+            <div style="display:flex; align-items:center; gap:14px;">
+              <div class="faq-icon" style="background:linear-gradient(135deg,rgba(139,92,246,0.15),rgba(139,92,246,0.05)); border:1px solid rgba(139,92,246,0.2);">🔒</div>
+              <span>Mes données clients sont-elles en sécurité ?</span>
+            </div>
+            <span class="faq-plus">+</span>
+          </summary>
+          <div class="faq-body">Oui. Vos données ne quittent jamais votre infrastructure sans votre accord. Stark accède uniquement aux informations nécessaires pour répondre aux questions clients, et toutes les connexions sont chiffrées. Nous ne revendons aucune donnée à des tiers.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-summary">
+            <div style="display:flex; align-items:center; gap:14px;">
+              <div class="faq-icon" style="background:linear-gradient(135deg,rgba(34,211,238,0.15),rgba(34,211,238,0.05)); border:1px solid rgba(34,211,238,0.2);">⏱</div>
+              <span>Combien de temps prend la mise en place ?</span>
+            </div>
+            <span class="faq-plus">+</span>
+          </summary>
+          <div class="faq-body">Entre 3 et 7 jours ouvrables. Nous nous occupons de toute l'intégration technique — vous n'avez rien à coder. Dès la mise en ligne, l'agent est opérationnel immédiatement.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-summary">
+            <div style="display:flex; align-items:center; gap:14px;">
+              <div class="faq-icon" style="background:linear-gradient(135deg,rgba(244,114,182,0.15),rgba(244,114,182,0.05)); border:1px solid rgba(244,114,182,0.2);">🔄</div>
+              <span>Que se passe-t-il si Stark ne sait pas répondre ?</span>
+            </div>
+            <span class="faq-plus">+</span>
+          </summary>
+          <div class="faq-body">Stark détecte automatiquement les questions hors de sa portée et transfère la conversation vers vous avec un résumé complet. Le client ne reste jamais sans solution.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-summary">
+            <div style="display:flex; align-items:center; gap:14px;">
+              <div class="faq-icon" style="background:linear-gradient(135deg,rgba(79,141,255,0.15),rgba(79,141,255,0.05)); border:1px solid rgba(79,141,255,0.2);">⚙️</div>
+              <span>Puis-je modifier les réponses de l'agent après la mise en place ?</span>
+            </div>
+            <span class="faq-plus">+</span>
+          </summary>
+          <div class="faq-body">Oui, l'agent est entièrement configurable à tout moment. Vous pouvez mettre à jour vos données, ajouter de nouvelles règles ou modifier le ton des réponses. Notre équipe vous accompagne pour chaque ajustement.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-summary">
+            <div style="display:flex; align-items:center; gap:14px;">
+              <div class="faq-icon" style="background:linear-gradient(135deg,rgba(139,92,246,0.15),rgba(139,92,246,0.05)); border:1px solid rgba(139,92,246,0.2);">📅</div>
+              <span>Y a-t-il un engagement de durée ?</span>
+            </div>
+            <span class="faq-plus">+</span>
+          </summary>
+          <div class="faq-body">Non, pas d'engagement longue durée. L'abonnement mensuel est sans contrat annuel. Vous pouvez arrêter à tout moment. Les frais d'installation sont uniques et non remboursables une fois la mise en place effectuée.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-summary">
+            <div style="display:flex; align-items:center; gap:14px;">
+              <div class="faq-icon" style="background:linear-gradient(135deg,rgba(34,211,238,0.15),rgba(34,211,238,0.05)); border:1px solid rgba(34,211,238,0.2);">📈</div>
+              <span>Est-ce que Stark peut augmenter mes ventes ?</span>
+            </div>
+            <span class="faq-plus">+</span>
+          </summary>
+          <div class="faq-body">Oui. En répondant instantanément à chaque prospect, Stark réduit drastiquement les opportunités perdues. Un client qui ne reçoit pas de réponse dans les minutes qui suivent va voir ailleurs — Stark élimine ce problème.</div>
+        </details>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TARIFS (déplacés après FAQ) ── -->
+  <div class="divider"></div>
+  <section id="pricing" style="padding:100px 0; position:relative; overflow:hidden;">
     <div class="orb" style="width:500px;height:300px;background:rgba(79,141,255,0.07);bottom:0;left:-100px;"></div>
     <div style="max-width:1200px; margin:0 auto; padding:0 24px;">
       <span class="section-eyebrow">Tarification</span>
@@ -506,18 +885,16 @@
               <span style="font-size:0.72rem; color:#9ca3af;">+ 499 TND frais d'installation</span>
             </div>
           </div>
-
           <div style="height:1px; background:#f1f3f9;"></div>
-
           <ul style="display:flex; flex-direction:column; gap:12px; font-size:0.88rem;">
             <li style="display:flex; align-items:flex-start; gap:10px; color:#4b5563;"><div class="check">✓</div>Agent IA connecté à vos produits et services</li>
             <li style="display:flex; align-items:flex-start; gap:10px; color:#4b5563;"><div class="check">✓</div>Répond automatiquement aux messages clients</li>
+            <li style="display:flex; align-items:flex-start; gap:10px; color:#4b5563;"><div class="check">✓</div>WhatsApp · Messenger · Instagram · Site web</li>
             <li style="display:flex; align-items:flex-start; gap:10px; color:#4b5563;"><div class="check">✓</div>Jusqu'à 300 messages/mois</li>
             <li style="display:flex; align-items:flex-start; gap:10px; color:#4b5563;"><div class="check">✗</div>N'accepte pas les messages vocaux</li>
             <li style="display:flex; align-items:flex-start; gap:10px; color:#4b5563;"><div class="check">✗</div>Pas de gestion rendez-vous</li>
             <li style="display:flex; align-items:flex-start; gap:10px; color:#4b5563;"><div class="check">✗</div>Pas de satisfaction client</li>
           </ul>
-
           <a href="formulaire.html" class="btn-secondary" style="margin-top:auto; text-align:center;">Commencer →</a>
         </div>
 
@@ -525,7 +902,6 @@
           <div style="position:absolute;top:-16px;left:50%;transform:translateX(-50%);z-index:2;">
             <span style="display:inline-flex;align-items:center;padding:8px 20px;border-radius:100px;background:linear-gradient(135deg,#4f8dff,#7c3aed);font-size:0.75rem;font-weight:700;letter-spacing:0.05em;color:#fff;box-shadow:0 4px 20px rgba(79,141,255,0.45); white-space:nowrap;">✦ Recommandé</span>
           </div>
-
           <div class="card-pro" style="padding:36px; padding-top:44px; display:flex; flex-direction:column; gap:28px; border-radius:24px;">
             <div>
               <span style="font-size:0.7rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#4f8dff;">Pro</span>
@@ -540,92 +916,17 @@
                 <span style="font-size:0.72rem; color:#6b7280;">+ 699 TND frais d'installation</span>
               </div>
             </div>
-
             <div style="height:1px; background:rgba(79,141,255,0.12);"></div>
-
             <div style="color:#374151; font-weight:700; font-size:0.9rem;">Tout le Starter + :</div>
-
             <ul style="display:flex; flex-direction:column; gap:12px; font-size:0.88rem;">
               <li style="display:flex; align-items:flex-start; gap:10px; color:#374151;"><div class="check">✓</div>Messages vocaux transcrits</li>
               <li style="display:flex; align-items:flex-start; gap:10px; color:#374151;"><div class="check">✓</div>Gestion rendez-vous complète</li>
               <li style="display:flex; align-items:flex-start; gap:10px; color:#374151;"><div class="check">✓</div>Satisfaction client + rapport mensuel</li>
               <li style="display:flex; align-items:flex-start; gap:10px; color:#374151;"><div class="check">✓</div>Jusqu'à 1000 messages/mois</li>
             </ul>
-
             <a href="formulaire.html" class="btn-primary" style="margin-top:auto; text-align:center;">Choisir Pro →</a>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="divider"></div>
-  <section style="padding:100px 0;">
-    <div style="max-width:800px; margin:0 auto; padding:0 24px;">
-      <span class="section-eyebrow">FAQ</span>
-      <h2 style="font-size:clamp(2rem,4vw,3rem); font-weight:800; letter-spacing:-0.02em;">Questions fréquentes</h2>
-      <p style="margin-top:12px; color:#6b7280; font-size:1.05rem;">Tout ce que vous voulez savoir avant de vous lancer.</p>
-
-      <div style="margin-top:48px; display:flex; flex-direction:column; gap:12px;">
-        <details style="border-radius:16px; border:1px solid #e8ecf4; background:#fff; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
-          <summary style="padding:22px 24px; font-weight:700; color:#1a1d2e; cursor:pointer; display:flex; justify-content:space-between; align-items:center; list-style:none; font-size:0.98rem;">
-            Mes données clients sont-elles en sécurité ?
-            <span style="color:#4f8dff; font-size:1.3rem; flex-shrink:0; margin-left:12px;">+</span>
-          </summary>
-          <div style="padding:0 24px 22px; color:#6b7280; line-height:1.7; border-top:1px solid #f1f3f9; margin-top:0; font-size:0.92rem;">
-            Oui. Vos données ne quittent jamais votre infrastructure sans votre accord. Stark accède uniquement aux informations nécessaires pour répondre aux questions clients, et toutes les connexions sont chiffrées. Nous ne revendons aucune donnée à des tiers.
-          </div>
-        </details>
-
-        <details style="border-radius:16px; border:1px solid #e8ecf4; background:#fff; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
-          <summary style="padding:22px 24px; font-weight:700; color:#1a1d2e; cursor:pointer; display:flex; justify-content:space-between; align-items:center; list-style:none; font-size:0.98rem;">
-            Combien de temps prend la mise en place ?
-            <span style="color:#4f8dff; font-size:1.3rem; flex-shrink:0; margin-left:12px;">+</span>
-          </summary>
-          <div style="padding:0 24px 22px; color:#6b7280; line-height:1.7; border-top:1px solid #f1f3f9; font-size:0.92rem;">
-            En général entre 3 et 7 jours ouvrables selon la complexité de vos informations. Nous nous occupons de toute l'intégration technique — vous n'avez rien à coder. Dès la mise en ligne, l'agent est opérationnel immédiatement.
-          </div>
-        </details>
-
-        <details style="border-radius:16px; border:1px solid #e8ecf4; background:#fff; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
-          <summary style="padding:22px 24px; font-weight:700; color:#1a1d2e; cursor:pointer; display:flex; justify-content:space-between; align-items:center; list-style:none; font-size:0.98rem;">
-            Fonctionne-t-il avec WhatsApp Business ?
-            <span style="color:#4f8dff; font-size:1.3rem; flex-shrink:0; margin-left:12px;">+</span>
-          </summary>
-          <div style="padding:0 24px 22px; color:#6b7280; line-height:1.7; border-top:1px solid #f1f3f9; font-size:0.92rem;">
-            Oui, Stark est entièrement compatible avec WhatsApp Business API. L'agent répond directement dans vos conversations WhatsApp, comme si c'était un membre de votre équipe. Il gère aussi bien les messages entrants que les suivis automatiques.
-          </div>
-        </details>
-
-        <details style="border-radius:16px; border:1px solid #e8ecf4; background:#fff; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
-          <summary style="padding:22px 24px; font-weight:700; color:#1a1d2e; cursor:pointer; display:flex; justify-content:space-between; align-items:center; list-style:none; font-size:0.98rem;">
-            Que se passe-t-il si l'agent ne sait pas répondre ?
-            <span style="color:#4f8dff; font-size:1.3rem; flex-shrink:0; margin-left:12px;">+</span>
-          </summary>
-          <div style="padding:0 24px 22px; color:#6b7280; line-height:1.7; border-top:1px solid #f1f3f9; font-size:0.92rem;">
-            L'agent détecte automatiquement les questions hors de sa portée et redirige le client vers un membre de votre équipe humaine. Vous êtes toujours informé et le client ne reste jamais sans solution.
-          </div>
-        </details>
-
-        <details style="border-radius:16px; border:1px solid #e8ecf4; background:#fff; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
-          <summary style="padding:22px 24px; font-weight:700; color:#1a1d2e; cursor:pointer; display:flex; justify-content:space-between; align-items:center; list-style:none; font-size:0.98rem;">
-            Puis-je modifier les réponses de l'agent après la mise en place ?
-            <span style="color:#4f8dff; font-size:1.3rem; flex-shrink:0; margin-left:12px;">+</span>
-          </summary>
-          <div style="padding:0 24px 22px; color:#6b7280; line-height:1.7; border-top:1px solid #f1f3f9; font-size:0.92rem;">
-            Oui, l'agent est entièrement configurable. Vous pouvez à tout moment mettre à jour vos données, ajouter de nouvelles règles ou modifier le ton des réponses. Notre équipe vous accompagne pour chaque ajustement inclus dans la maintenance mensuelle.
-          </div>
-        </details>
-
-        <details style="border-radius:16px; border:1px solid #e8ecf4; background:#fff; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
-          <summary style="padding:22px 24px; font-weight:700; color:#1a1d2e; cursor:pointer; display:flex; justify-content:space-between; align-items:center; list-style:none; font-size:0.98rem;">
-            Y a-t-il un engagement de durée ?
-            <span style="color:#4f8dff; font-size:1.3rem; flex-shrink:0; margin-left:12px;">+</span>
-          </summary>
-          <div style="padding:0 24px 22px; color:#6b7280; line-height:1.7; border-top:1px solid #f1f3f9; font-size:0.92rem;">
-            Non, pas d'engagement longue durée. L'abonnement mensuel est sans contrat annuel. Vous pouvez arrêter à tout moment. Les frais d'installation sont uniques et ne sont pas remboursables une fois la mise en place effectuée.
-          </div>
-        </details>
       </div>
     </div>
   </section>
@@ -647,7 +948,7 @@
           </p>
           <div style="margin-top:32px; display:flex; flex-wrap:wrap; gap:14px;">
             <a href="formulaire.html" class="btn-primary">Lancer mon projet</a>
-            <a href="mailto:contact@stark.tn" class="btn-secondary">contact@stark.tn</a>
+            <a href="https://mail.google.com/mail/?view=cm&to=starkagency01@gmail.com" target="_blank" rel="noopener" class="btn-secondary">starkagency01@gmail.com</a>
           </div>
         </div>
       </div>
@@ -662,7 +963,7 @@
       <div style="display:flex; flex-direction:column; gap:28px; font-size:0.92rem; color:#4b5563; line-height:1.75;">
         <div>
           <h3 style="font-size:1rem; font-weight:700; color:#1a1d2e; margin-bottom:8px;">Éditeur du site</h3>
-          <p>Stark — Service d'agent IA pour entreprises.<br>Contact : <a href="mailto:contact@stark.tn" style="color:#4f8dff;">contact@stark.tn</a></p>
+          <p>Stark — Service d'agent IA pour entreprises.<br>Contact : <a href="https://mail.google.com/mail/?view=cm&to=starkagency01@gmail.com" target="_blank" rel="noopener" style="color:#4f8dff;">starkagency01@gmail.com</a></p>
         </div>
 
         <div>
@@ -677,7 +978,7 @@
 
         <div>
           <h3 style="font-size:1rem; font-weight:700; color:#1a1d2e; margin-bottom:8px;">Vos droits</h3>
-          <p>Conformément à la réglementation en vigueur, vous disposez d'un droit d'accès, de rectification et de suppression de vos données. Pour exercer ces droits, contactez-nous à <a href="mailto:contact@stark.tn" style="color:#4f8dff;">contact@stark.tn</a>.</p>
+          <p>Conformément à la réglementation en vigueur, vous disposez d'un droit d'accès, de rectification et de suppression de vos données. Pour exercer ces droits, contactez-nous à <a href="https://mail.google.com/mail/?view=cm&to=starkagency01@gmail.com" target="_blank" rel="noopener" style="color:#4f8dff;">starkagency01@gmail.com</a>.</p>
         </div>
 
         <div>
@@ -699,7 +1000,7 @@
     <div style="display:flex; gap:20px; flex-wrap:wrap;">
       <a href="#mentions-legales" style="color:#9ca3af; font-size:0.82rem; text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='#4f8dff'" onmouseout="this.style.color='#9ca3af'">Mentions légales</a>
       <a href="#mentions-legales" style="color:#9ca3af; font-size:0.82rem; text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='#4f8dff'" onmouseout="this.style.color='#9ca3af'">Politique de confidentialité</a>
-      <a href="mailto:contact@stark.tn" style="color:#9ca3af; font-size:0.82rem; text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='#4f8dff'" onmouseout="this.style.color='#9ca3af'">contact@stark.tn</a>
+      <a href="https://mail.google.com/mail/?view=cm&to=starkagency01@gmail.com" target="_blank" rel="noopener" style="color:#9ca3af; font-size:0.82rem; text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='#4f8dff'" onmouseout="this.style.color='#9ca3af'">starkagency01@gmail.com</a>
     </div>
   </div>
 </footer>
@@ -774,6 +1075,42 @@
     document.getElementById('submitBtn').textContent = 'Envoyer la demande →';
     document.getElementById('submitBtn').disabled = false;
   }
+
+  // ── SECTEURS ─────────────────────────────────────────────────────
+  const sectors = [
+    { icon:'🏥', title:'Cabinets médicaux', tagline:'Stark répond à vos patients même quand vous êtes en consultation.', points:['Prise de rendez-vous automatique 24h/24','Informe sur les horaires, l\'adresse et les tarifs','Répond aux questions sur les spécialités et les médecins','Zéro appel manqué pendant les consultations'] },
+    { icon:'💆', title:'Salons de beauté / Spas', tagline:'Stark remplit votre agenda pendant que vous travaillez.', points:['Réservations et confirmations automatiques','Informe sur les soins, les prix et les disponibilités','Rappels de rendez-vous automatiques','Zéro client perdu faute de réponse rapide'] },
+    { icon:'🍽', title:'Restaurants', tagline:'Stark gère vos réservations et répond pendant le service.', points:['Réservations automatiques 24h/24','Informe sur le menu, les prix et les allergènes','Gère les questions livraison et horaires','Zéro appel manqué pendant les coups de feu'] },
+    { icon:'☕', title:'Cafés', tagline:'Stark attire plus de clients et répond à leurs questions instantanément.', points:['Informe sur les horaires, l\'emplacement et le parking','Répond aux questions sur la carte et les formules','Gère les demandes de privatisation et d\'événements','Disponible même quand le service est chargé'] },
+    { icon:'🏨', title:'Hôtels / Maisons d\'hôtes', tagline:'Stark améliore l\'expérience client avant même l\'arrivée.', points:['Informe sur les disponibilités, les tarifs et les équipements','Répond aux questions sur le check-in et le check-out','Gère les demandes spéciales et les activités','Disponible pour vos clients internationaux 24h/24'] },
+    { icon:'🏋️', title:'Salles de sport', tagline:'Stark convertit les curieux en membres sans effort.', points:['Informe sur les abonnements, les tarifs et les engagements','Répond aux questions sur les horaires et les coachs','Gère les demandes d\'essai gratuit','Disponible tôt le matin et tard le soir'] },
+    { icon:'🎓', title:'Centres de formation / Auto-écoles', tagline:'Stark accompagne vos prospects du premier message à l\'inscription.', points:['Informe sur les formations, les prix et les dates','Répond aux questions sur les certifications et débouchés','Gère les demandes d\'inscription et de documents','Zéro prospect perdu par manque de réponse rapide'] },
+    { icon:'🛍', title:'Boutiques / E-commerce', tagline:'Stark vend pour vous même quand la boutique est fermée.', points:['Informe sur les produits, les tailles et les stocks','Répond aux questions sur les prix et les promotions','Gère les questions livraison et retour','Transforme les curieux en acheteurs 24h/24'] },
+    { icon:'🚗', title:'Concessionnaires / Garages', tagline:'Stark qualifie vos prospects et gère votre planning atelier.', points:['Informe sur les véhicules disponibles et les prix','Répond aux questions sur les révisions et réparations','Gère les prises de rendez-vous atelier','Disponible le weekend quand vos clients cherchent'] },
+    { icon:'🏠', title:'Agences immobilières', tagline:'Stark répond à vos prospects à toute heure, même le dimanche.', points:['Informe sur les biens disponibles à la vente et à la location','Répond aux questions sur les prix et les superficies','Gère les demandes de visite','Zéro prospect perdu la nuit ou le weekend'] },
+    { icon:'⚖️', title:'Cabinets juridiques / Comptables', tagline:'Stark filtre et qualifie vos prospects avant le premier rendez-vous.', points:['Informe sur les domaines d\'expertise et les honoraires','Répond aux questions administratives courantes','Gère les demandes de consultation initiale','Image professionnelle et réactive 24h/24'] },
+    { icon:'🔧', title:'Artisans / Techniciens', tagline:'Stark gère vos demandes de devis pendant que vous êtes sur chantier.', points:['Informe sur les services proposés et les zones d\'intervention','Répond aux questions sur les délais et les tarifs','Collecte les informations pour préparer un devis','Zéro client perdu parce que vous n\'avez pas décroché'] }
+  ];
+
+  function selectSector(btn, idx) {
+    document.querySelectorAll('.sector-card').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    const s = sectors[idx];
+    document.getElementById('sectorIcon').textContent = s.icon;
+    document.getElementById('sectorTitle').textContent = s.title;
+    document.getElementById('sectorTagline').textContent = s.tagline;
+    const ul = document.getElementById('sectorPoints');
+    ul.innerHTML = s.points.map(p => `<li class="sector-point">${p}</li>`).join('');
+    const card = document.getElementById('sectorCard');
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(8px)';
+    setTimeout(() => { card.style.opacity = '1'; card.style.transform = 'translateY(0)'; }, 20);
+  }
+
+  // Init premier secteur
+  window.addEventListener('DOMContentLoaded', () => {
+    selectSector(document.querySelector('.sector-card'), 0);
+  });
 </script>
 
 </body>
