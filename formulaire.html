@@ -851,7 +851,7 @@ html
           <button type="button" onclick="wizPrev()" class="nav-back">← Précédent</button>
           <span></span>
         </div>
-        <button type="submit" class="btn-primary" id="submitBtn" style="width:100%; max-width:400px; padding:16px 32px; font-size:1rem;">
+        <button type="button" onclick="submitForm()" class="btn-primary" id="submitBtn" style="width:100%; max-width:400px; padding:16px 32px; font-size:1rem;">
           ✅ Envoyer ma demande de configuration
         </button>
         <p class="submit-note">Vous serez contacté sous 24h pour finaliser la mise en place de votre agent.</p>
@@ -1106,66 +1106,56 @@ html
   }
 
   // ── SUBMIT ───────────────────────────────────────────────────────
-  document.getElementById('mainForm').addEventListener('submit', async function(e) {
-    e.preventDefault();
+  async function submitForm() {
     const btn = document.getElementById('submitBtn');
     btn.textContent = 'Envoi en cours…';
     btn.disabled = true;
+    btn.style.background = '#9ca3af';
 
-    // Collect data via name attributes
     const formData = new FormData();
 
-    // Step 1 - champs nommés directement collectés
-    const named = document.querySelectorAll('#mainForm [name]');
-    named.forEach(el => {
-      if (el.type === 'radio') {
-        if (el.checked) formData.append(el.name, el.value);
-      } else {
-        formData.append(el.name, el.value || '');
-      }
+    // Champs nommés (step 1)
+    document.querySelectorAll('#mainForm [name]').forEach(el => {
+      if (el.type === 'radio') { if (el.checked) formData.append(el.name, el.value); }
+      else { formData.append(el.name, el.value || ''); }
     });
 
     // Horaires
-    const horairesRows = document.querySelectorAll('#horairesGrid .horaire-row');
     const jours = ['Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi','Dimanche'];
     let horairesText = '';
-    horairesRows.forEach((row, i) => {
+    document.querySelectorAll('#horairesGrid .horaire-row').forEach((row, i) => {
       const times = row.querySelectorAll('input[type="time"]');
       const cb = row.querySelector('input[type="checkbox"]');
-      horairesText += cb && cb.checked && times[0].value
+      horairesText += (cb && cb.checked && times[0].value)
         ? `${jours[i]}: ${times[0].value} – ${times[1].value}\n`
         : `${jours[i]}: Fermé\n`;
     });
     formData.append('Horaires', horairesText);
 
     // Services
-    const serviceRows = document.querySelectorAll('#servicesTbody tr');
     let servicesText = '';
-    serviceRows.forEach(row => {
+    document.querySelectorAll('#servicesTbody tr').forEach(row => {
       const cells = row.querySelectorAll('input, select');
-      if (cells[0]?.value) servicesText += `• ${cells[0].value} | ${cells[1]?.value||''} | ${cells[2]?.value||''} | Prix: ${cells[3]?.value||''}TND | Résa: ${cells[4]?.value||''}\n`;
+      if (cells[0]?.value) servicesText += `• ${cells[0].value} | Prix: ${cells[3]?.value||'?'}TND\n`;
     });
     if (servicesText) formData.append('Services', servicesText);
 
     // FAQ
-    const faqItems = document.querySelectorAll('#faqContainer .faq-item');
     let faqText = '';
-    faqItems.forEach((item, i) => {
+    document.querySelectorAll('#faqContainer .faq-item').forEach((item, i) => {
       const inputs = item.querySelectorAll('input[type="text"], textarea');
-      if (inputs[0]?.value) faqText += `Q${i+1}: ${inputs[0].value}\nR${i+1}: ${inputs[1]?.value||''}\n\n`;
+      if (inputs[0]?.value) faqText += `Q${i+1}: ${inputs[0].value}\nR: ${inputs[1]?.value||''}\n\n`;
     });
     if (faqText) formData.append('FAQ', faqText);
 
-    // RDV services
-    const rdvRows = document.querySelectorAll('#rdvTbody tr');
+    // RDV
     let rdvText = '';
-    rdvRows.forEach(row => {
+    document.querySelectorAll('#rdvTbody tr').forEach(row => {
       const cells = row.querySelectorAll('input');
-      if (cells[0]?.value) rdvText += `• ${cells[0].value} | ${cells[1]?.value||''}min | ${cells[2]?.value||''}TND | ${cells[3]?.value||''}\n`;
+      if (cells[0]?.value) rdvText += `• ${cells[0].value} | ${cells[1]?.value||'?'}min | ${cells[2]?.value||'?'}TND\n`;
     });
     if (rdvText) formData.append('Services RDV', rdvText);
 
-    // Send to Formspree
     try {
       const response = await fetch('https://formspree.io/f/xgobeqwq', {
         method: 'POST',
@@ -1180,35 +1170,33 @@ html
         document.getElementById('successScreen').style.display = 'block';
         window.scrollTo({ top: 0, behavior: 'smooth' });
       } else {
-        const errorData = await response.json().catch(() => ({}));
-        const errorMsg = errorData.error || errorData.errors?.[0]?.message || `Erreur ${response.status}`;
+        const data = await response.json().catch(() => ({}));
+        const msg = data.error || data.errors?.[0]?.message || `Erreur ${response.status}`;
         btn.textContent = '⚠️ Erreur — réessayez';
         btn.disabled = false;
         btn.style.background = '#ef4444';
-        // Show visible error message below button
-        let errDiv = document.getElementById('formError');
-        if (!errDiv) {
-          errDiv = document.createElement('p');
-          errDiv.id = 'formError';
-          errDiv.style.cssText = 'color:#ef4444; font-size:0.85rem; margin-top:12px; font-weight:600;';
-          btn.parentNode.insertBefore(errDiv, btn.nextSibling);
-        }
-        errDiv.textContent = '⚠️ ' + errorMsg + ' — Vérifiez que votre compte Formspree est activé sur starkagency01@gmail.com';
+        showFormError('Erreur Formspree : ' + msg);
       }
     } catch (err) {
       btn.textContent = '⚠️ Erreur réseau — réessayez';
       btn.disabled = false;
       btn.style.background = '#ef4444';
-      let errDiv = document.getElementById('formError');
-      if (!errDiv) {
-        errDiv = document.createElement('p');
-        errDiv.id = 'formError';
-        errDiv.style.cssText = 'color:#ef4444; font-size:0.85rem; margin-top:12px; font-weight:600;';
-        btn.parentNode.insertBefore(errDiv, btn.nextSibling);
-      }
-      errDiv.textContent = '⚠️ Erreur réseau : ' + err.message;
+      showFormError('Erreur réseau : ' + err.message);
     }
-  });
+  }
+
+  function showFormError(msg) {
+    let el = document.getElementById('formError');
+    if (!el) {
+      el = document.createElement('p');
+      el.id = 'formError';
+      el.style.cssText = 'color:#ef4444;font-size:0.85rem;margin-top:12px;font-weight:600;text-align:center;';
+      document.getElementById('submitBtn').after(el);
+    }
+    el.textContent = '⚠️ ' + msg;
+  }
+
+  document.getElementById('mainForm').addEventListener('submit', function(e) { e.preventDefault(); });
 
   // ── SHAKE ANIMATION ──────────────────────────────────────────────
   const shakeStyle = document.createElement('style');
