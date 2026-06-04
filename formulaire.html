@@ -562,12 +562,12 @@ html
         <div class="field-grid">
           <div class="field">
             <label class="flabel">Nom de l'entreprise <span class="req">*</span></label>
-            <input type="text" placeholder="Ex : Bella Spa Tunis" required>
+            <input type="text" name="Nom entreprise" placeholder="Ex : Bella Spa Tunis" required>
             <span class="field-tip">⚠️ Utilisé dans toutes les réponses de l'agent</span>
           </div>
           <div class="field">
             <label class="flabel">Secteur d'activité <span class="req">*</span></label>
-            <select required>
+            <select name="Secteur" required>
               <option value="">— Choisir —</option>
               <option>Centre de beauté / Spa</option>
               <option>Restaurant / Café</option>
@@ -584,12 +584,12 @@ html
         <div class="field-grid">
           <div class="field">
             <label class="flabel">Numéro WhatsApp Business <span class="req">*</span></label>
-            <input type="tel" placeholder="+216 XX XXX XXX" required>
+            <input type="tel" name="WhatsApp Business" placeholder="+216 XX XXX XXX" required>
             <span class="field-tip">⚠️ Numéro dédié à l'entreprise — pas un numéro personnel</span>
           </div>
           <div class="field">
             <label class="flabel">Email du gestionnaire <span class="req">*</span></label>
-            <input type="email" placeholder="contact@entreprise.tn" required>
+            <input type="email" name="Email gestionnaire" placeholder="contact@entreprise.tn" required>
             <span class="field-tip">📧 Pour les alertes, escalades et rapports</span>
           </div>
         </div>
@@ -597,18 +597,18 @@ html
         <div class="field-grid">
           <div class="field">
             <label class="flabel">Adresse complète</label>
-            <input type="text" placeholder="Ex : 12 Avenue Habib Bourguiba, Tunis">
+            <input type="text" name="Adresse" placeholder="Ex : 12 Avenue Habib Bourguiba, Tunis">
           </div>
           <div class="field">
             <label class="flabel">Ville</label>
-            <input type="text" placeholder="Ex : Tunis">
+            <input type="text" name="Ville" placeholder="Ex : Tunis">
           </div>
         </div>
 
         <div class="field-grid full">
           <div class="field">
             <label class="flabel">Description de l'entreprise <span class="req">*</span> <span class="hint">— 2 à 3 phrases</span></label>
-            <textarea placeholder="Ex : Bella Spa Tunis est un centre de beauté haut de gamme spécialisé dans les soins du visage, du corps et le bien-être. Nous proposons des services personnalisés dans un cadre luxueux au cœur de Tunis." required></textarea>
+            <textarea name="Description entreprise" placeholder="Ex : Bella Spa Tunis est un centre de beauté haut de gamme spécialisé dans les soins du visage, du corps et le bien-être. Nous proposons des services personnalisés dans un cadre luxueux au cœur de Tunis." required></textarea>
             <span class="field-tip">💡 Plus c'est précis, mieux l'agent représente votre image</span>
           </div>
         </div>
@@ -616,11 +616,11 @@ html
         <div class="field-grid">
           <div class="field">
             <label class="flabel">Téléphone fixe <span class="hint">— optionnel</span></label>
-            <input type="tel" placeholder="+216 71 XXX XXX">
+            <input type="tel" name="Téléphone fixe" placeholder="+216 71 XXX XXX">
           </div>
           <div class="field">
             <label class="flabel">Site web <span class="hint">— optionnel</span></label>
-            <input type="text" placeholder="www.entreprise.tn">
+            <input type="text" name="Site web" placeholder="www.entreprise.tn">
           </div>
         </div>
       </div>
@@ -1106,18 +1106,108 @@ html
   }
 
   // ── SUBMIT ───────────────────────────────────────────────────────
-  document.getElementById('mainForm').addEventListener('submit', function(e) {
+  document.getElementById('mainForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     const btn = document.getElementById('submitBtn');
     btn.textContent = 'Envoi en cours…';
     btn.disabled = true;
-    setTimeout(() => {
-      document.getElementById('mainForm').style.display = 'none';
-      document.getElementById('wizardNav').style.display = 'none';
-      document.getElementById('stepsBar').style.display = 'none';
-      document.getElementById('successScreen').style.display = 'block';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, 800);
+
+    // Collect data via name attributes
+    const formData = new FormData();
+
+    // Step 1 - champs nommés directement collectés
+    const named = document.querySelectorAll('#mainForm [name]');
+    named.forEach(el => {
+      if (el.type === 'radio') {
+        if (el.checked) formData.append(el.name, el.value);
+      } else {
+        formData.append(el.name, el.value || '');
+      }
+    });
+
+    // Horaires
+    const horairesRows = document.querySelectorAll('#horairesGrid .horaire-row');
+    const jours = ['Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi','Dimanche'];
+    let horairesText = '';
+    horairesRows.forEach((row, i) => {
+      const times = row.querySelectorAll('input[type="time"]');
+      const cb = row.querySelector('input[type="checkbox"]');
+      horairesText += cb && cb.checked && times[0].value
+        ? `${jours[i]}: ${times[0].value} – ${times[1].value}\n`
+        : `${jours[i]}: Fermé\n`;
+    });
+    formData.append('Horaires', horairesText);
+
+    // Services
+    const serviceRows = document.querySelectorAll('#servicesTbody tr');
+    let servicesText = '';
+    serviceRows.forEach(row => {
+      const cells = row.querySelectorAll('input, select');
+      if (cells[0]?.value) servicesText += `• ${cells[0].value} | ${cells[1]?.value||''} | ${cells[2]?.value||''} | Prix: ${cells[3]?.value||''}TND | Résa: ${cells[4]?.value||''}\n`;
+    });
+    if (servicesText) formData.append('Services', servicesText);
+
+    // FAQ
+    const faqItems = document.querySelectorAll('#faqContainer .faq-item');
+    let faqText = '';
+    faqItems.forEach((item, i) => {
+      const inputs = item.querySelectorAll('input[type="text"], textarea');
+      if (inputs[0]?.value) faqText += `Q${i+1}: ${inputs[0].value}\nR${i+1}: ${inputs[1]?.value||''}\n\n`;
+    });
+    if (faqText) formData.append('FAQ', faqText);
+
+    // RDV services
+    const rdvRows = document.querySelectorAll('#rdvTbody tr');
+    let rdvText = '';
+    rdvRows.forEach(row => {
+      const cells = row.querySelectorAll('input');
+      if (cells[0]?.value) rdvText += `• ${cells[0].value} | ${cells[1]?.value||''}min | ${cells[2]?.value||''}TND | ${cells[3]?.value||''}\n`;
+    });
+    if (rdvText) formData.append('Services RDV', rdvText);
+
+    // Send to Formspree
+    try {
+      const response = await fetch('https://formspree.io/f/xgobeqwq', {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        document.getElementById('mainForm').style.display = 'none';
+        document.getElementById('wizardNav').style.display = 'none';
+        document.getElementById('stepsBar').style.display = 'none';
+        document.getElementById('successScreen').style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        const errorData = await response.json().catch(() => ({}));
+        const errorMsg = errorData.error || errorData.errors?.[0]?.message || `Erreur ${response.status}`;
+        btn.textContent = '⚠️ Erreur — réessayez';
+        btn.disabled = false;
+        btn.style.background = '#ef4444';
+        // Show visible error message below button
+        let errDiv = document.getElementById('formError');
+        if (!errDiv) {
+          errDiv = document.createElement('p');
+          errDiv.id = 'formError';
+          errDiv.style.cssText = 'color:#ef4444; font-size:0.85rem; margin-top:12px; font-weight:600;';
+          btn.parentNode.insertBefore(errDiv, btn.nextSibling);
+        }
+        errDiv.textContent = '⚠️ ' + errorMsg + ' — Vérifiez que votre compte Formspree est activé sur starkagency01@gmail.com';
+      }
+    } catch (err) {
+      btn.textContent = '⚠️ Erreur réseau — réessayez';
+      btn.disabled = false;
+      btn.style.background = '#ef4444';
+      let errDiv = document.getElementById('formError');
+      if (!errDiv) {
+        errDiv = document.createElement('p');
+        errDiv.id = 'formError';
+        errDiv.style.cssText = 'color:#ef4444; font-size:0.85rem; margin-top:12px; font-weight:600;';
+        btn.parentNode.insertBefore(errDiv, btn.nextSibling);
+      }
+      errDiv.textContent = '⚠️ Erreur réseau : ' + err.message;
+    }
   });
 
   // ── SHAKE ANIMATION ──────────────────────────────────────────────
