@@ -102,7 +102,7 @@
     .flow-dot {
       position: absolute;
       top: 50%;
-      left: -8px;
+      left: 0;
       transform: translateY(-50%);
       width: 14px;
       height: 14px;
@@ -112,10 +112,10 @@
       animation: travelDot 2.4s ease-in-out infinite;
     }
     @keyframes travelDot {
-      0%   { left: -8px; opacity: 0; }
+      0%   { left: 5%; opacity: 0; }
       8%   { opacity: 1; }
       92%  { opacity: 1; }
-      100% { left: calc(100% - 6px); opacity: 0; }
+      100% { left: 90%; opacity: 0; }
     }
     @media (max-width: 640px) {
       .flow-line-desktop { display: none !important; }
