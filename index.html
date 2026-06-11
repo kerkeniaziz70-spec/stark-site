@@ -192,11 +192,14 @@
       flex-shrink: 0;
       margin-top: 1px;
     }
-    @media (max-width: 640px) {
+    @media (max-width: 768px) {
       .stats-grid { grid-template-columns: repeat(2,1fr) !important; }
       .stats-grid > div { border-right: none !important; border-bottom: 1px solid rgba(79,141,255,0.15); }
       .stats-grid > div:nth-child(odd) { border-right: 1px solid rgba(79,141,255,0.15) !important; }
       .stats-grid > div:last-child { border-bottom: none; }
+      /* Fix zone vide hero mobile */
+      .lg\:grid-cols-2.grid { grid-template-columns: 1fr !important; }
+      .lg\:grid-cols-2.grid > div[style*="order:2"] { display: none !important; }
     }
 
     .mesh-bg {
@@ -461,7 +464,7 @@
     <div class="orb" style="width:500px;height:500px;background:rgba(139,92,246,0.08);top:100px;right:-150px;"></div>
 
     <div style="max-width:1200px; margin:0 auto; padding:0 24px; display:grid; gap:60px; align-items:center;" class="lg:grid-cols-2 grid">
-      <div class="fade-in">
+      <div class="fade-in" style="order:1;">
         <div class="badge badge-blue">
           L'employé qui ne dort jamais
         </div>
@@ -489,7 +492,7 @@
         </div>
       </div>
 
-      <div class="float fade-in-delay-2" style="position:relative;">
+      <div class="float fade-in-delay-2" style="position:relative; order:2;">
         <div style="position:absolute;inset:-40px;background:radial-gradient(ellipse, rgba(79,141,255,0.15) 0%, transparent 70%);border-radius:50%;pointer-events:none;"></div>
 
         <div class="card" style="padding:24px; position:relative; background:#fff;">
