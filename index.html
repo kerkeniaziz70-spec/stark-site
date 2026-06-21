@@ -5,27 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- ══ SEO ══ -->
-  <title>Stark — L'employé qui ne dort jamais</title>
+  <title>Stark</title>
   <meta name="description" content="Ne perdez plus de clients quand vous dormez. Stark répond à 100% de vos messages WhatsApp automatiquement, 24h/24 et 7j/7. Zéro prospect laissé sans réponse." />
-  <meta name="keywords" content="agent IA, agent IA multicanal, support client automatique, Stark, intelligence artificielle Tunisie, réponse automatique multicanal" />
+  <meta name="keywords" content="agent IA, chatbot WhatsApp, support client automatique, Stark, intelligence artificielle Tunisie, réponse automatique WhatsApp" />
   <meta name="author" content="Stark" />
   <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://starkai.tn" />
+  <link rel="canonical" href="https://stark.tn" />
 
   <!-- ══ OPEN GRAPH ══ -->
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://starkai.tn" />
-  <meta property="og:title" content="Stark — L'employé qui ne dort jamais" />
-  <meta property="og:description" content="Ne perdez plus de clients quand vous dormez. Stark répond à 100% de vos messages automatiquement — WhatsApp, Instagram, Messenger — 24h/24 et 7j/7." />
-  <meta property="og:image" content="https://starkai.tn/og-image.png" />
+  <meta property="og:url" content="https://stark.tn" />
+  <meta property="og:title" content="Stark" />
+  <meta property="og:description" content="Ne perdez plus de clients quand vous dormez. Stark répond à 100% de vos messages WhatsApp automatiquement, 24h/24 et 7j/7." />
+  <meta property="og:image" content="https://stark.tn/og-image.png" />
   <meta property="og:locale" content="fr_TN" />
   <meta property="og:site_name" content="Stark" />
 
   <!-- ══ TWITTER CARD ══ -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Stark — L'employé qui ne dort jamais" />
-  <meta name="twitter:description" content="Ne perdez plus de clients quand vous dormez. Stark répond à 100% de vos messages automatiquement — WhatsApp, Instagram, Messenger — 24h/24 et 7j/7." />
-  <meta name="twitter:image" content="https://starkai.tn/og-image.png" />
+  <meta name="twitter:title" content="Stark" />
+  <meta name="twitter:description" content="Ne perdez plus de clients quand vous dormez. Stark répond à 100% de vos messages WhatsApp automatiquement." />
+  <meta name="twitter:image" content="https://stark.tn/og-image.png" />
 
   <!-- ══ FAVICON ══ -->
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiM0ZjhkZmYiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjN2MzYWVkIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcng9IjIyIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHBvbHlnb24gcG9pbnRzPSI1OCw4IDI4LDU1IDQ4LDU1IDQyLDkyIDcyLDQ1IDUyLDQ1IiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4=" />
@@ -192,14 +192,11 @@
       flex-shrink: 0;
       margin-top: 1px;
     }
-    @media (max-width: 768px) {
+    @media (max-width: 640px) {
       .stats-grid { grid-template-columns: repeat(2,1fr) !important; }
       .stats-grid > div { border-right: none !important; border-bottom: 1px solid rgba(79,141,255,0.15); }
       .stats-grid > div:nth-child(odd) { border-right: 1px solid rgba(79,141,255,0.15) !important; }
       .stats-grid > div:last-child { border-bottom: none; }
-      /* Fix zone vide hero mobile */
-      .lg\:grid-cols-2.grid { grid-template-columns: 1fr !important; }
-      .lg\:grid-cols-2.grid > div[style*="order:2"] { display: none !important; }
     }
 
     .mesh-bg {
@@ -391,14 +388,9 @@
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       padding: 16px 24px; display: flex; align-items: center; justify-content: space-between;
-      background: #f8f9fc;
+      background: rgba(248,249,252,0.85);
+      backdrop-filter: blur(20px);
       border-bottom: 1px solid #e8ecf4;
-    }
-    @supports (backdrop-filter: blur(1px)) {
-      nav {
-        background: rgba(248,249,252,0.85);
-        backdrop-filter: blur(20px);
-      }
     }
 
     .nav-logo {
@@ -469,7 +461,7 @@
     <div class="orb" style="width:500px;height:500px;background:rgba(139,92,246,0.08);top:100px;right:-150px;"></div>
 
     <div style="max-width:1200px; margin:0 auto; padding:0 24px; display:grid; gap:60px; align-items:center;" class="lg:grid-cols-2 grid">
-      <div class="fade-in" style="order:1;">
+      <div class="fade-in">
         <div class="badge badge-blue">
           L'employé qui ne dort jamais
         </div>
@@ -481,7 +473,7 @@
         </h1>
 
         <p style="margin-top:24px; font-size:1.1rem; line-height:1.7; color:#6b7280; max-width:520px;">
-          Stark répond à <strong style="color:#1a1d2e;">100% de vos messages</strong> automatiquement — WhatsApp, Instagram, Messenger — vos horaires, vos services, vos prix — <strong style="color:#1a1d2e;">24h/24 et 7j/7</strong>, sans pause et sans attente.
+          Stark répond à <strong style="color:#1a1d2e;">100% de vos messages WhatsApp</strong> automatiquement — vos horaires, vos services, vos prix — <strong style="color:#1a1d2e;">24h/24 et 7j/7</strong>, sans pause et sans attente.
         </p>
 
         <div style="margin-top:36px; display:flex; flex-wrap:wrap; gap:14px;">
@@ -497,7 +489,7 @@
         </div>
       </div>
 
-      <div class="float fade-in-delay-2" style="position:relative; order:2;">
+      <div class="float fade-in-delay-2" style="position:relative;">
         <div style="position:absolute;inset:-40px;background:radial-gradient(ellipse, rgba(79,141,255,0.15) 0%, transparent 70%);border-radius:50%;pointer-events:none;"></div>
 
         <div class="card" style="padding:24px; position:relative; background:#fff;">
@@ -658,7 +650,7 @@
         <div>
           <span class="section-eyebrow">Avantages</span>
           <h2 style="font-size:clamp(2rem,4vw,3rem); font-weight:800; letter-spacing:-0.02em; margin-top:16px; line-height:1.15;">Pourquoi choisir<br><span class="text-gradient-main">Stark ?</span></h2>
-          <p style="margin-top:16px; color:#6b7280; font-size:1.05rem; line-height:1.7;">Un Agent IA multicanal conçu pour le marché tunisien, qui travaille à votre place sans jamais s'arrêter.</p>
+          <p style="margin-top:16px; color:#6b7280; font-size:1.05rem; line-height:1.7;">Un agent IA conçu pour le marché tunisien, qui travaille à votre place sans jamais s'arrêter.</p>
 
           <div style="margin-top:36px; display:flex; flex-direction:column; gap:20px;">
             <div style="display:flex; align-items:flex-start; gap:16px;">
@@ -1028,12 +1020,12 @@
       <a href="#mentions-legales" style="color:#9ca3af; font-size:0.82rem; text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='#4f8dff'" onmouseout="this.style.color='#9ca3af'">Politique de confidentialité</a>
       <a href="https://mail.google.com/mail/?view=cm&to=starkagency01@gmail.com" target="_blank" rel="noopener" style="color:#9ca3af; font-size:0.82rem; text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='#4f8dff'" onmouseout="this.style.color='#9ca3af'">starkagency01@gmail.com</a>
       <span style="color:#e8ecf4;">|</span>
-      <a href="tel:+21625959562" style="color:#9ca3af; font-size:0.82rem; text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='#4f8dff'" onmouseout="this.style.color='#9ca3af'">+216 25 959 562</a>
+      <a href="tel:+21620735049" style="color:#9ca3af; font-size:0.82rem; text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='#4f8dff'" onmouseout="this.style.color='#9ca3af'">+216 20 735 049</a>
     </div>
   </div>
 </footer>
 
-<a href="https://wa.me/21625959562?text=Bonjour%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20Stark%20et%20je%20souhaite%20en%20savoir%20plus." target="_blank" id="whatsappBtn"
+<a href="https://wa.me/21620735049?text=Bonjour%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20Stark%20et%20je%20souhaite%20en%20savoir%20plus." target="_blank" id="whatsappBtn"
   style="position:fixed; bottom:28px; right:28px; z-index:999; width:58px; height:58px; border-radius:50%; background:linear-gradient(135deg,#25d366,#128c7e); display:flex; align-items:center; justify-content:center; box-shadow:0 6px 24px rgba(37,211,102,0.45); transition:all 0.3s; text-decoration:none;"
   onmouseover="this.style.transform='scale(1.12)'; this.style.boxShadow='0 10px 32px rgba(37,211,102,0.6)'"
   onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 6px 24px rgba(37,211,102,0.45)'">
