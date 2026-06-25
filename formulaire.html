@@ -802,36 +802,50 @@ html
           </div>
         </div>
 
-        <div class="plan-grid">
-          <label class="plan-card" id="cardStarter" onclick="pickPlan('starter')">
-            <input type="radio" name="plan" value="starter">
-            <div class="plan-name">🥉 Starter</div>
+        <div class="plan-grid" style="grid-template-columns: 1fr 1fr 1fr;">
+          <label class="plan-card" id="cardStart" onclick="pickPlan('start')">
+            <input type="radio" name="plan" value="start">
+            <div class="plan-name">⚡ Stark Start</div>
             <div class="plan-price">299 TND <span>/ mois</span></div>
-            <div class="plan-install">+ 499 TND installation unique</div>
+            <div class="plan-install">Petits commerces · Artisans</div>
             <ul class="plan-feats">
-              <li><span class="ck">✓</span> Réponses automatiques texte</li>
-              <li><span class="ck">✓</span> Base de données Google Sheets</li>
-              <li><span class="ck">✓</span> Historique conversations</li>
-              <li><span class="ck">✓</span> Escalade humaine</li>
-              <li><span class="ck">✓</span> 300 messages / mois</li>
-              <li><span class="cx">✗</span> Messages vocaux</li>
-              <li><span class="cx">✗</span> Gestion rendez-vous</li>
-              <li><span class="cx">✗</span> Satisfaction client</li>
+              <li><span class="ck">✓</span> WhatsApp + Messenger</li>
+              <li><span class="ck">✓</span> Réponses FAQ automatiques</li>
+              <li><span class="ck">✓</span> Capture de leads</li>
+              <li><span class="ck">✓</span> 500 messages / mois</li>
+              <li><span class="cx">✗</span> Prise de rendez-vous</li>
+              <li><span class="cx">✗</span> Relance clients</li>
             </ul>
           </label>
 
-          <label class="plan-card" id="cardPro" onclick="pickPlan('pro')">
-            <input type="radio" name="plan" value="pro">
-            <div class="plan-badge">✦ Recommandé</div>
-            <div class="plan-name">🥇 Pro</div>
+          <label class="plan-card" id="cardGrowth" onclick="pickPlan('growth')">
+            <input type="radio" name="plan" value="growth">
+            <div class="plan-badge">✦ Le plus populaire</div>
+            <div class="plan-name">🚀 Stark Growth</div>
             <div class="plan-price">499 TND <span>/ mois</span></div>
-            <div class="plan-install">+ 699 TND installation unique</div>
+            <div class="plan-install">Restaurants · Salons · Médecins</div>
             <ul class="plan-feats">
-              <li><span class="ck">✓</span> Tout le plan Starter</li>
-              <li><span class="ck">✓</span> Messages vocaux transcrits</li>
-              <li><span class="ck">✓</span> Gestion rendez-vous complète</li>
-              <li><span class="ck">✓</span> Satisfaction client</li>
-              <li><span class="ck">✓</span> 1000 messages / mois</li>
+              <li><span class="ck">✓</span> Tout Stark Start</li>
+              <li><span class="ck">✓</span> WhatsApp + IG + Messenger</li>
+              <li><span class="ck">✓</span> Prise de RDV automatique</li>
+              <li><span class="ck">✓</span> Relance clients</li>
+              <li><span class="ck">✓</span> Mini CRM inclus</li>
+              <li><span class="ck">✓</span> Messages illimités</li>
+            </ul>
+          </label>
+
+          <label class="plan-card" id="cardBusiness" onclick="pickPlan('business')">
+            <input type="radio" name="plan" value="business">
+            <div class="plan-name">💼 Stark Business</div>
+            <div class="plan-price">899 TND <span>/ mois</span></div>
+            <div class="plan-install">Entreprises · Franchises</div>
+            <ul class="plan-feats">
+              <li><span class="ck">✓</span> Tout Stark Growth</li>
+              <li><span class="ck">✓</span> Agent commercial IA</li>
+              <li><span class="ck">✓</span> Pipeline de vente auto</li>
+              <li><span class="ck">✓</span> Scripts de vente IA</li>
+              <li><span class="ck">✓</span> Reporting mensuel</li>
+              <li><span class="ck">✓</span> Support prioritaire dédié</li>
             </ul>
           </label>
         </div>
@@ -1101,8 +1115,9 @@ html
 
   // ── PLAN ─────────────────────────────────────────────────────────
   function pickPlan(p) {
-    document.getElementById('cardStarter').classList.toggle('selected', p === 'starter');
-    document.getElementById('cardPro').classList.toggle('selected', p === 'pro');
+    document.getElementById('cardStart').classList.toggle('selected', p === 'start');
+    document.getElementById('cardGrowth').classList.toggle('selected', p === 'growth');
+    document.getElementById('cardBusiness').classList.toggle('selected', p === 'business');
   }
 
   // ── SUBMIT ───────────────────────────────────────────────────────
