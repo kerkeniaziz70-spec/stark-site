@@ -127,7 +127,7 @@
       animation: travelDot 2.4s ease-in-out infinite;
     }
     @keyframes travelDot {
-      0%   { left: 5%; opacity: 0; }
+      0%   { left: 15%; opacity: 0; }
       8%   { opacity: 1; }
       92%  { opacity: 1; }
       100% { left: 90%; opacity: 0; }
@@ -325,10 +325,9 @@
 
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      padding: 16px 24px; display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 0; display: block;
       background: rgba(248,249,252,0.85);
       backdrop-filter: blur(20px);
-      border-bottom: 1px solid #e8ecf4;
     }
 
     .nav-logo {
@@ -363,19 +362,25 @@
 <div class="mesh-bg"></div>
 
 <nav>
-  <div class="nav-logo">Stark</div>
-  <div class="nav-links">
-    <a href="#how-it-works">Comment ça marche</a>
-    <a href="#why">Pourquoi Stark</a>
-    <a href="#faq">FAQ</a>
-  </div>
-  <div style="display:flex; align-items:center; gap:12px;">
-    <a href="formulaire.html" class="btn-primary nav-cta-btn" style="padding:10px 20px; font-size:0.85rem;">Demander une démo</a>
-    <button id="menuBtn" onclick="toggleMenu()" class="hamburger-btn">
-      <span class="bar" style="display:block; width:22px; height:2px; background:#1a1d2e; border-radius:2px; transition:all 0.3s;"></span>
-      <span class="bar" style="display:block; width:22px; height:2px; background:#1a1d2e; border-radius:2px; transition:all 0.3s;"></span>
-      <span class="bar" style="display:block; width:22px; height:2px; background:#1a1d2e; border-radius:2px; transition:all 0.3s;"></span>
-    </button>
+  <div style="max-width:1200px; width:100%; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:0 24px;">
+    <a href="index.html" style="display:flex; align-items:center; gap:9px; text-decoration:none;">
+      <svg width="28" height="28" viewBox="0 0 100 100" style="flex-shrink:0;"><defs><linearGradient id="navlogog" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#4f8dff"/><stop offset="100%" stop-color="#7c3aed"/></linearGradient></defs><rect width="100" height="100" rx="22" fill="url(#navlogog)"/><polygon points="58,8 28,55 48,55 42,92 72,45 52,45" fill="white"/></svg>
+      <div class="nav-logo">Stark</div>
+    </a>
+    <div class="nav-links">
+      <a href="#how-it-works">Comment ça marche</a>
+      <a href="#why">Pourquoi Stark</a>
+      <a href="#connexion">Connexion</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <div style="display:flex; align-items:center; gap:12px;">
+      <a href="formulaire.html" class="btn-primary nav-cta-btn" style="padding:10px 20px; font-size:0.85rem;">Demander une démo</a>
+      <button id="menuBtn" onclick="toggleMenu()" class="hamburger-btn">
+        <span class="bar" style="display:block; width:22px; height:2px; background:#1a1d2e; border-radius:2px; transition:all 0.3s;"></span>
+        <span class="bar" style="display:block; width:22px; height:2px; background:#1a1d2e; border-radius:2px; transition:all 0.3s;"></span>
+        <span class="bar" style="display:block; width:22px; height:2px; background:#1a1d2e; border-radius:2px; transition:all 0.3s;"></span>
+      </button>
+    </div>
   </div>
 </nav>
 
@@ -388,8 +393,7 @@
 
 <main style="padding-top: 80px;">
 
-  <section style="min-height:90vh; display:flex; align-items:center; padding: 80px 0; position:relative; overflow:hidden;">
-    <div class="orb" style="width:600px;height:600px;background:rgba(79,141,255,0.08);top:-200px;left:-200px;"></div>
+  <section style="min-height:calc(100vh - 80px); display:flex; align-items:center; padding: 32px 0; position:relative; overflow:hidden;">
     <div class="orb" style="width:500px;height:500px;background:rgba(139,92,246,0.08);top:100px;right:-150px;"></div>
 
     <div style="max-width:1200px; margin:0 auto; padding:0 24px; display:grid; gap:60px; align-items:center;" class="lg:grid-cols-2 grid">
@@ -398,22 +402,32 @@
           L'employé qui ne dort jamais
         </div>
 
-        <h1 style="margin-top:28px; font-size:clamp(2.8rem,6vw,5rem); line-height:1.05; font-weight:800; letter-spacing:-0.03em; font-family: 'Manrope', sans-serif;">
-          Ne perdez plus<br>
-          <span class="text-gradient-main">de clients</span><br>
-          <span style="color:#1a1d2e; font-weight:800;">quand vous dormez.</span>
+        <h1 style="margin-top:20px; font-size:clamp(2.4rem,5vw,4.2rem); line-height:1.08; font-weight:800; letter-spacing:-0.03em; font-family: 'Manrope', sans-serif;">
+          Transformez chaque<br>
+          <span class="text-gradient-main">message</span><br>
+          <span style="color:#1a1d2e; font-weight:800;">en client satisfait.</span>
         </h1>
 
-        <p style="margin-top:24px; font-size:1.1rem; line-height:1.7; color:#6b7280; max-width:520px;">
-          Stark répond à <strong style="color:#1a1d2e;">100% de vos messages</strong> automatiquement — WhatsApp, Instagram, Messenger — <strong style="color:#1a1d2e;">24h/24 et 7j/7</strong>. Résultat : <strong style="color:#1a1d2e;">+30% de clients</strong> et <strong style="color:#1a1d2e;">-60% de temps perdu</strong> sur la messagerie.
+        <p style="margin-top:18px; font-size:1.05rem; line-height:1.6; color:#6b7280; max-width:520px;">
+          Stark répond à vos clients sur <strong style="color:#1a1d2e;">WhatsApp, Instagram et Messenger</strong>, <strong style="color:#1a1d2e;">24h/24</strong>, à partir de vos propres informations. Il transfère la conversation à votre équipe quand c'est nécessaire, et va jusqu'à conseiller vos produits.
         </p>
 
-        <div style="margin-top:36px; display:flex; flex-wrap:wrap; gap:14px;">
+        <div style="margin-top:26px; display:flex; flex-wrap:wrap; gap:14px;">
           <a href="formulaire.html" class="btn-primary">Demander une démo →</a>
           <a href="#how-it-works" class="btn-secondary">Voir comment ça marche</a>
         </div>
 
-        <div style="margin-top:36px; display:grid; grid-template-columns:1fr 1fr; gap:12px; max-width:460px;">
+        <div style="margin-top:18px; display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+          <span style="color:#f59e0b; letter-spacing:2px; font-size:0.95rem;">★★★★★</span>
+          <span style="font-size:0.85rem; color:#6b7280; font-weight:600;">Approuvé par les entreprises tunisiennes</span>
+        </div>
+        <div style="margin-top:8px; display:flex; flex-wrap:wrap; gap:16px; font-size:0.82rem; color:#6b7280;">
+          <span><strong style="color:#1a1d2e;">7 jours</strong> d'installation</span>
+          <span><strong style="color:#1a1d2e;">Sans code</strong> à gérer</span>
+          <span>Support en <strong style="color:#1a1d2e;">darija</strong></span>
+        </div>
+
+        <div style="margin-top:24px; display:grid; grid-template-columns:1fr 1fr; gap:12px; max-width:460px;">
           <div class="stat-item">📈 +30% de clients</div>
           <div class="stat-item">⏱ -60% de temps perdu</div>
           <div class="stat-item">🕐 Réponses 24h/24 7j/7</div>
@@ -421,10 +435,10 @@
         </div>
       </div>
 
-      <div class="float fade-in-delay-2" style="position:relative;">
+      <div class="float fade-in-delay-2" style="position:relative; display:flex; justify-content:center; align-items:center; width:100%;">
         <div style="position:absolute;inset:-40px;background:radial-gradient(ellipse, rgba(79,141,255,0.15) 0%, transparent 70%);border-radius:50%;pointer-events:none;"></div>
 
-        <div class="card" style="padding:24px; position:relative; background:#fff;">
+        <div class="card" style="padding:24px; position:relative; background:#fff; max-width:460px; width:100%;">
           <div style="display:flex; align-items:center; gap:12px; margin-bottom:20px; padding-bottom:16px; border-bottom:1px solid #e8ecf4;">
             <div style="width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,#4f8dff,#8b5cf6);display:flex;align-items:center;justify-content:center;font-size:1.1rem; font-family: 'Manrope', sans-serif; font-weight:800; color:white; letter-spacing:-0.05em;">S</div>
             <div>
@@ -465,6 +479,33 @@
     </div>
   </section>
 
+  <section style="padding:56px 0;">
+    <div style="max-width:1100px; margin:0 auto; padding:0 24px;">
+      <p style="text-align:center; font-size:0.78rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#9ca3af; margin-bottom:28px;">Présent partout où sont vos clients</p>
+      <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:16px;">
+        <span style="display:inline-flex; align-items:center; gap:10px; padding:14px 26px; border-radius:100px; border:1.5px solid #e8ecf4; background:#fff; box-shadow:0 4px 14px rgba(0,0,0,0.04); font-size:0.95rem; font-weight:700; color:#1a1d2e;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#25D366"><path d="M12.04 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.44 9.9-9.9 0-2.64-1.03-5.13-2.9-7-1.87-1.87-4.36-2.94-7-2.94zm0 18.1a8.2 8.2 0 0 1-4.17-1.14l-.3-.18-3.1.82.83-3.03-.2-.31a8.2 8.2 0 1 1 6.94 3.84zm4.5-6.14c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.13-.17.25-.64.81-.78.97-.14.17-.29.19-.53.06-.25-.12-1.04-.38-1.98-1.22-.73-.65-1.23-1.46-1.37-1.7-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.15.16-.25.25-.42.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.76-1.85-.2-.48-.41-.42-.56-.43-.14-.01-.31-.01-.48-.01-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.08 0 1.23.89 2.41 1.02 2.58.12.17 1.75 2.67 4.24 3.74.59.26 1.06.41 1.42.52.6.19 1.14.16 1.57.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.16-.48-.28z"/></svg>
+          WhatsApp
+        </span>
+        <span style="display:inline-flex; align-items:center; gap:10px; padding:14px 26px; border-radius:100px; border:1.5px solid #e8ecf4; background:#fff; box-shadow:0 4px 14px rgba(0,0,0,0.04); font-size:0.95rem; font-weight:700; color:#1a1d2e;">
+          <svg width="20" height="20" viewBox="0 0 24 24"><defs><linearGradient id="igg" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#FFDC80"/><stop offset="25%" stop-color="#FCAF45"/><stop offset="50%" stop-color="#E1306C"/><stop offset="75%" stop-color="#C13584"/><stop offset="100%" stop-color="#833AB4"/></linearGradient></defs><path fill="url(#igg)" d="M12 2c2.72 0 3.06.01 4.12.06 1.06.05 1.79.22 2.43.46.66.26 1.22.6 1.77 1.15.55.55.9 1.11 1.15 1.77.24.64.41 1.37.46 2.43.05 1.06.06 1.4.06 4.12s-.01 3.06-.06 4.12c-.05 1.06-.22 1.79-.46 2.43-.26.66-.6 1.22-1.15 1.77-.55.55-1.11.9-1.77 1.15-.64.24-1.37.41-2.43.46-1.06.05-1.4.06-4.12.06s-3.06-.01-4.12-.06c-1.06-.05-1.79-.22-2.43-.46-.66-.26-1.22-.6-1.77-1.15-.55-.55-.9-1.11-1.15-1.77-.24-.64-.41-1.37-.46-2.43C2.01 15.06 2 14.72 2 12s.01-3.06.06-4.12c.05-1.06.22-1.79.46-2.43.26-.66.6-1.22 1.15-1.77.55-.55 1.11-.9 1.77-1.15.64-.24 1.37-.41 2.43-.46C8.94 2.01 9.28 2 12 2zm0 3.5A6.5 6.5 0 1 0 12 18.5 6.5 6.5 0 0 0 12 5.5zm0 10.72A4.22 4.22 0 1 1 12 7.78a4.22 4.22 0 0 1 0 8.44zm6.76-10.98a1.52 1.52 0 1 1-3.04 0 1.52 1.52 0 0 1 3.04 0z"/></svg>
+          Instagram
+        </span>
+        <span style="display:inline-flex; align-items:center; gap:10px; padding:14px 26px; border-radius:100px; border:1.5px solid #e8ecf4; background:#fff; box-shadow:0 4px 14px rgba(0,0,0,0.04); font-size:0.95rem; font-weight:700; color:#1a1d2e;">
+          <svg width="20" height="20" viewBox="0 0 24 24"><defs><linearGradient id="mgg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00B2FF"/><stop offset="50%" stop-color="#0084FF"/><stop offset="100%" stop-color="#B620E0"/></linearGradient></defs><path fill="url(#mgg)" d="M12 2C6.48 2 2 6.14 2 11.26c0 2.94 1.44 5.56 3.7 7.28V22l3.38-1.86c.9.25 1.87.38 2.92.38 5.52 0 10-4.14 10-9.26C22 6.14 17.52 2 12 2zm1.02 12.47-2.55-2.72-4.98 2.72 5.48-5.82 2.6 2.72 4.93-2.72-5.48 5.82z"/></svg>
+          Messenger
+        </span>
+        <span style="display:inline-flex; align-items:center; gap:10px; padding:14px 26px; border-radius:100px; border:1.5px solid #e8ecf4; background:#fff; box-shadow:0 4px 14px rgba(0,0,0,0.04); font-size:0.95rem; font-weight:700; color:#1a1d2e;">
+          <svg width="20" height="20" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#26A5E4"/><path fill="#fff" d="M17.5 7.2 15.6 16.9c-.14.63-.51.79-1.03.49l-2.85-2.1-1.37 1.32c-.15.15-.28.28-.57.28l.2-2.9 5.3-4.79c.23-.2-.05-.32-.36-.11l-6.55 4.13-2.82-.88c-.61-.19-.62-.61.13-.9l11.02-4.25c.51-.19.96.12.8.92z"/></svg>
+          Telegram
+        </span>
+        <span style="display:inline-flex; align-items:center; gap:10px; padding:14px 26px; border-radius:100px; border:1.5px solid rgba(79,141,255,0.25); background:rgba(79,141,255,0.06); font-size:0.95rem; font-weight:700; color:#3b6fd4;">
+          🌐 50+ langues
+        </span>
+      </div>
+    </div>
+  </section>
+
   <div class="divider"></div>
 
   <section style="padding:60px 0; background:linear-gradient(135deg, rgba(79,141,255,0.06) 0%, rgba(139,92,246,0.06) 100%);">
@@ -493,6 +534,11 @@
   <div class="divider"></div>
   <section style="padding:60px 0;">
     <div style="max-width:1200px; margin:0 auto; padding:0 24px;">
+      <div style="text-align:center; max-width:640px; margin:0 auto 48px;">
+        <span class="section-eyebrow">Ce que fait Stark</span>
+        <h2 style="font-size:clamp(1.8rem,3.5vw,2.6rem); font-weight:800; letter-spacing:-0.02em;">Un agent IA. Toutes vos conversations clients.</h2>
+        <p style="margin-top:12px; color:#6b7280; font-size:1.02rem;">Stark gère les échanges répétitifs, votre équipe se concentre sur ce qui compte vraiment.</p>
+      </div>
       <div style="display:grid; gap:20px;" class="md:grid-cols-3 grid">
         <div class="card" style="padding:32px;">
           <div class="feature-icon" style="background:linear-gradient(135deg,rgba(79,141,255,0.15),rgba(79,141,255,0.05)); border:1px solid rgba(79,141,255,0.2);">⚡</div>
@@ -520,36 +566,36 @@
     <div class="orb" style="width:400px;height:400px;background:rgba(139,92,246,0.07);top:50%;left:50%;transform:translate(-50%,-50%);"></div>
     <div style="max-width:1200px; margin:0 auto; padding:0 24px;">
       <span class="section-eyebrow">Processus</span>
-      <h2 style="font-size:clamp(2rem,4vw,3rem); font-weight:800; letter-spacing:-0.02em;">Comment ça marche</h2>
-      <p style="margin-top:12px; color:#6b7280; font-size:1.05rem;">De la question du client à la réponse — en moins de 5 secondes.</p>
+      <h2 style="font-size:clamp(2rem,4vw,3rem); font-weight:800; letter-spacing:-0.02em;">En ligne en trois étapes</h2>
+      <p style="margin-top:12px; color:#6b7280; font-size:1.05rem;">Aucun développeur, aucun serveur à gérer. Vous apportez votre activité, on branche l'agent.</p>
 
-      <div style="margin-top:64px; position:relative; display:flex; align-items:center; justify-content:center;">
-        <div style="position:absolute; top:36px; left:50%; transform:translateX(-50%); width:520px; height:2px; background:linear-gradient(90deg,#e8ecf4,#4f8dff,#7c3aed,#22d3ee,#e8ecf4); border-radius:2px; z-index:0;" class="flow-line-desktop">
+      <div style="margin-top:64px; position:relative; display:flex; align-items:center; justify-content:center; overflow:hidden; padding:0 4px;">
+        <div style="position:absolute; top:36px; left:50%; transform:translateX(-50%); width:100%; max-width:760px; height:2px; background:linear-gradient(90deg,#e8ecf4,#4f8dff,#7c3aed,#22d3ee,#e8ecf4); border-radius:2px; z-index:0;" class="flow-line-desktop">
           <div class="flow-dot"></div>
         </div>
 
-        <div style="display:flex; align-items:flex-start; justify-content:center; gap:80px; position:relative; z-index:1; flex-wrap:wrap;" class="flow-nodes">
-          <div style="display:flex; flex-direction:column; align-items:center; gap:20px; width:140px;">
-            <div style="width:72px; height:72px; border-radius:22px; background:linear-gradient(135deg,#25d366,#128c7e); display:flex; align-items:center; justify-content:center; font-size:1.9rem; box-shadow:0 8px 28px rgba(37,211,102,0.35); border:3px solid #fff;">💬</div>
+        <div style="display:flex; align-items:flex-start; justify-content:center; gap:60px; position:relative; z-index:1; flex-wrap:wrap;" class="flow-nodes">
+          <div style="display:flex; flex-direction:column; align-items:center; gap:20px; width:230px;">
+            <div style="width:72px; height:72px; border-radius:22px; background:linear-gradient(135deg,#25d366,#128c7e); display:flex; align-items:center; justify-content:center; font-size:1.9rem; box-shadow:0 8px 28px rgba(37,211,102,0.35); border:3px solid #fff;">📋</div>
             <div style="text-align:center;">
-              <div style="font-weight:700; font-size:0.95rem; color:#1a1d2e;">Client envoie</div>
-              <div style="font-size:0.8rem; color:#6b7280; margin-top:6px; line-height:1.5;">WhatsApp · Messenger<br>Instagram · Site web</div>
+              <div style="font-weight:700; font-size:0.95rem; color:#1a1d2e;">Parlez de votre activité à Stark</div>
+              <p style="margin-top:10px; font-size:0.82rem; color:#6b7280; line-height:1.6;">Collez votre FAQ, vos prix et vos règles, ou un lien vers vos documents. Stark apprend votre activité en quelques secondes.</p>
             </div>
           </div>
 
-          <div style="display:flex; flex-direction:column; align-items:center; gap:20px; width:140px;">
-            <div style="width:72px; height:72px; border-radius:22px; background:linear-gradient(135deg,#4f8dff,#7c3aed); display:flex; align-items:center; justify-content:center; font-size:1.9rem; box-shadow:0 8px 28px rgba(79,141,255,0.4); border:3px solid #fff;">⚡</div>
+          <div style="display:flex; flex-direction:column; align-items:center; gap:20px; width:230px;">
+            <div style="width:72px; height:72px; border-radius:22px; background:linear-gradient(135deg,#4f8dff,#7c3aed); display:flex; align-items:center; justify-content:center; font-size:1.9rem; box-shadow:0 8px 28px rgba(79,141,255,0.4); border:3px solid #fff;">🔗</div>
             <div style="text-align:center;">
-              <div style="font-weight:700; font-size:0.95rem; color:#1a1d2e;">Stark analyse</div>
-              <div style="font-size:0.8rem; color:#6b7280; margin-top:6px; line-height:1.5;">Comprend l'intention<br>Consulte vos infos</div>
+              <div style="font-weight:700; font-size:0.95rem; color:#1a1d2e;">Connectez votre canal</div>
+              <p style="margin-top:10px; font-size:0.82rem; color:#6b7280; line-height:1.6;">Reliez WhatsApp, Instagram, Messenger ou Telegram grâce aux étapes guidées ci-dessous. Un clic pour vérifier, aucun code requis.</p>
             </div>
           </div>
 
-          <div style="display:flex; flex-direction:column; align-items:center; gap:20px; width:140px;">
-            <div style="width:72px; height:72px; border-radius:22px; background:linear-gradient(135deg,#22d3ee,#4f8dff); display:flex; align-items:center; justify-content:center; font-size:1.9rem; box-shadow:0 8px 28px rgba(34,211,238,0.35); border:3px solid #fff;">✅</div>
+          <div style="display:flex; flex-direction:column; align-items:center; gap:20px; width:230px;">
+            <div style="width:72px; height:72px; border-radius:22px; background:linear-gradient(135deg,#22d3ee,#4f8dff); display:flex; align-items:center; justify-content:center; font-size:1.9rem; box-shadow:0 8px 28px rgba(34,211,238,0.35); border:3px solid #fff;">🚀</div>
             <div style="text-align:center;">
-              <div style="font-weight:700; font-size:0.95rem; color:#1a1d2e;">Réponse envoyée</div>
-              <div style="font-size:0.8rem; color:#6b7280; margin-top:6px; line-height:1.5;">Claire, précise<br>en moins de 5 sec</div>
+              <div style="font-weight:700; font-size:0.95rem; color:#1a1d2e;">Passez en ligne</div>
+              <p style="margin-top:10px; font-size:0.82rem; color:#6b7280; line-height:1.6;">Votre agent Stark commence à répondre, enregistrer et transférer immédiatement. Suivez son activité depuis votre tableau de bord.</p>
             </div>
           </div>
         </div>
@@ -647,6 +693,107 @@
       </div>
     </div>
   </section>
+
+  <div class="divider"></div>
+  <section id="connexion" style="padding:100px 0;">
+    <div style="max-width:920px; margin:0 auto; padding:0 24px;">
+      <span class="section-eyebrow">Connexion en quelques minutes</span>
+      <h2 style="font-size:clamp(2rem,4vw,3rem); font-weight:800; letter-spacing:-0.02em;">Branchez WhatsApp,<br>Instagram ou Messenger</h2>
+      <p style="margin-top:12px; color:#6b7280; font-size:1.05rem; max-width:640px;">Choisissez votre canal, on s'occupe du reste. La plupart des entreprises sont en ligne en moins de 10 minutes.</p>
+
+      <div style="margin-top:44px; border-radius:24px; background:#fff; border:1px solid #e8ecf4; box-shadow:0 24px 70px rgba(79,141,255,0.12); overflow:hidden;">
+        <div style="display:flex; gap:6px; padding:10px; background:#f1f3f9;">
+          <button class="conn-tab conn-tab-active" data-tab="wa" data-color="#25D366" onclick="switchConnTab('wa')" style="flex:1; display:flex; align-items:center; justify-content:center; gap:8px; padding:13px 14px; border-radius:14px; border:none; background:#fff; box-shadow:0 4px 14px rgba(0,0,0,0.08); font-size:0.85rem; font-weight:700; color:#1a1d2e; cursor:pointer; transition:all 0.2s;">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="#25D366"><path d="M12.04 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.44 9.9-9.9 0-2.64-1.03-5.13-2.9-7-1.87-1.87-4.36-2.94-7-2.94zm0 18.1a8.2 8.2 0 0 1-4.17-1.14l-.3-.18-3.1.82.83-3.03-.2-.31a8.2 8.2 0 1 1 6.94 3.84z"/></svg>
+            WhatsApp
+          </button>
+          <button class="conn-tab" data-tab="ig" data-color="#C13584" onclick="switchConnTab('ig')" style="flex:1; display:flex; align-items:center; justify-content:center; gap:8px; padding:13px 14px; border-radius:14px; border:none; background:transparent; font-size:0.85rem; font-weight:700; color:#6b7280; cursor:pointer; transition:all 0.2s;">
+            <svg width="17" height="17" viewBox="0 0 24 24"><defs><linearGradient id="igt" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#FFDC80"/><stop offset="50%" stop-color="#E1306C"/><stop offset="100%" stop-color="#833AB4"/></linearGradient></defs><path fill="url(#igt)" d="M12 2c2.72 0 3.06.01 4.12.06 1.06.05 1.79.22 2.43.46.66.26 1.22.6 1.77 1.15.55.55.9 1.11 1.15 1.77.24.64.41 1.37.46 2.43.05 1.06.06 1.4.06 4.12s-.01 3.06-.06 4.12c-.05 1.06-.22 1.79-.46 2.43-.26.66-.6 1.22-1.15 1.77-.55.55-1.11.9-1.77 1.15-.64.24-1.37.41-2.43.46-1.06.05-1.4.06-4.12.06s-3.06-.01-4.12-.06c-1.06-.05-1.79-.22-2.43-.46-.66-.26-1.22-.6-1.77-1.15-.55-.55-.9-1.11-1.15-1.77-.24-.64-.41-1.37-.46-2.43C2.01 15.06 2 14.72 2 12s.01-3.06.06-4.12c.05-1.06.22-1.79.46-2.43.26-.66.6-1.22 1.15-1.77.55-.55 1.11-.9 1.77-1.15.64-.24 1.37-.41 2.43-.46C8.94 2.01 9.28 2 12 2zm0 3.5A6.5 6.5 0 1 0 12 18.5 6.5 6.5 0 0 0 12 5.5zm0 10.72A4.22 4.22 0 1 1 12 7.78a4.22 4.22 0 0 1 0 8.44z"/></svg>
+            Instagram
+          </button>
+          <button class="conn-tab" data-tab="fb" data-color="#0084FF" onclick="switchConnTab('fb')" style="flex:1; display:flex; align-items:center; justify-content:center; gap:8px; padding:13px 14px; border-radius:14px; border:none; background:transparent; font-size:0.85rem; font-weight:700; color:#6b7280; cursor:pointer; transition:all 0.2s;">
+            <svg width="17" height="17" viewBox="0 0 24 24"><defs><linearGradient id="mgt" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00B2FF"/><stop offset="100%" stop-color="#B620E0"/></linearGradient></defs><path fill="url(#mgt)" d="M12 2C6.48 2 2 6.14 2 11.26c0 2.94 1.44 5.56 3.7 7.28V22l3.38-1.86c.9.25 1.87.38 2.92.38 5.52 0 10-4.14 10-9.26C22 6.14 17.52 2 12 2zm1.02 12.47-2.55-2.72-4.98 2.72 5.48-5.82 2.6 2.72 4.93-2.72-5.48 5.82z"/></svg>
+            Messenger
+          </button>
+        </div>
+
+        <div style="padding:36px;">
+          <div id="conn-panel-wa" class="conn-panel" style="display:flex; flex-direction:column;">
+            <div style="display:flex; gap:16px; padding-bottom:22px; margin-bottom:22px; border-bottom:1px solid #f1f3f9; position:relative;">
+              <div style="flex-shrink:0; width:34px; height:34px; border-radius:50%; background:#25D366; color:#fff; font-weight:700; font-size:0.85rem; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 10px rgba(37,211,102,0.35);">1</div>
+              <div><h4 style="font-weight:700; font-size:0.95rem; margin-bottom:4px;">Créez un compte Meta Business</h4><p style="color:#6b7280; font-size:0.88rem; line-height:1.6;">Rendez-vous sur business.facebook.com, gratuit, 2 minutes.</p></div>
+            </div>
+            <div style="display:flex; gap:16px; padding-bottom:22px; margin-bottom:22px; border-bottom:1px solid #f1f3f9;">
+              <div style="flex-shrink:0; width:34px; height:34px; border-radius:50%; background:#25D366; color:#fff; font-weight:700; font-size:0.85rem; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 10px rgba(37,211,102,0.35);">2</div>
+              <div><h4 style="font-weight:700; font-size:0.95rem; margin-bottom:4px;">Ajoutez le produit WhatsApp</h4><p style="color:#6b7280; font-size:0.88rem; line-height:1.6;">Meta vous fournit un numéro instantanément, ou connectez le vôtre.</p></div>
+            </div>
+            <div style="display:flex; gap:16px; padding-bottom:22px; margin-bottom:22px; border-bottom:1px solid #f1f3f9;">
+              <div style="flex-shrink:0; width:34px; height:34px; border-radius:50%; background:#25D366; color:#fff; font-weight:700; font-size:0.85rem; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 10px rgba(37,211,102,0.35);">3</div>
+              <div><h4 style="font-weight:700; font-size:0.95rem; margin-bottom:4px;">Envoyez-nous vos accès</h4><p style="color:#6b7280; font-size:0.88rem; line-height:1.6;">Notre équipe branche tout à votre place — aucune manipulation technique de votre côté.</p></div>
+            </div>
+            <div style="display:flex; gap:16px;">
+              <div style="flex-shrink:0; width:34px; height:34px; border-radius:50%; background:linear-gradient(135deg,#25D366,#4f8dff); color:#fff; font-weight:700; font-size:0.85rem; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 10px rgba(37,211,102,0.3);">4</div>
+              <div><h4 style="font-weight:700; font-size:0.95rem; margin-bottom:4px;">C'est en ligne 🎉</h4><p style="color:#6b7280; font-size:0.88rem; line-height:1.6;">Envoyez un message test, Stark répond déjà.</p></div>
+            </div>
+          </div>
+
+          <div id="conn-panel-ig" class="conn-panel" style="display:none; flex-direction:column;">
+            <div style="display:flex; gap:16px; padding-bottom:22px; margin-bottom:22px; border-bottom:1px solid #f1f3f9;">
+              <div style="flex-shrink:0; width:34px; height:34px; border-radius:50%; background:#C13584; color:#fff; font-weight:700; font-size:0.85rem; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 10px rgba(193,53,132,0.35);">1</div>
+              <div><h4 style="font-weight:700; font-size:0.95rem; margin-bottom:4px;">Passez en compte professionnel</h4><p style="color:#6b7280; font-size:0.88rem; line-height:1.6;">Instagram en compte Business/Créateur, lié à votre Page Facebook.</p></div>
+            </div>
+            <div style="display:flex; gap:16px; padding-bottom:22px; margin-bottom:22px; border-bottom:1px solid #f1f3f9;">
+              <div style="flex-shrink:0; width:34px; height:34px; border-radius:50%; background:#C13584; color:#fff; font-weight:700; font-size:0.85rem; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 10px rgba(193,53,132,0.35);">2</div>
+              <div><h4 style="font-weight:700; font-size:0.95rem; margin-bottom:4px;">Liez Instagram à votre app Meta</h4><p style="color:#6b7280; font-size:0.88rem; line-height:1.6;">Même app Meta que WhatsApp, on ajoute la messagerie Instagram.</p></div>
+            </div>
+            <div style="display:flex; gap:16px; padding-bottom:22px; margin-bottom:22px; border-bottom:1px solid #f1f3f9;">
+              <div style="flex-shrink:0; width:34px; height:34px; border-radius:50%; background:#C13584; color:#fff; font-weight:700; font-size:0.85rem; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 10px rgba(193,53,132,0.35);">3</div>
+              <div><h4 style="font-weight:700; font-size:0.95rem; margin-bottom:4px;">Envoyez-nous vos accès</h4><p style="color:#6b7280; font-size:0.88rem; line-height:1.6;">On configure le webhook et connecte le tout pour vous.</p></div>
+            </div>
+            <div style="display:flex; gap:16px;">
+              <div style="flex-shrink:0; width:34px; height:34px; border-radius:50%; background:linear-gradient(135deg,#C13584,#4f8dff); color:#fff; font-weight:700; font-size:0.85rem; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 10px rgba(193,53,132,0.3);">4</div>
+              <div><h4 style="font-weight:700; font-size:0.95rem; margin-bottom:4px;">Vos DM répondent seuls 🎉</h4><p style="color:#6b7280; font-size:0.88rem; line-height:1.6;">Stark prend le relais immédiatement sur vos messages Instagram.</p></div>
+            </div>
+          </div>
+
+          <div id="conn-panel-fb" class="conn-panel" style="display:none; flex-direction:column;">
+            <div style="display:flex; gap:16px; padding-bottom:22px; margin-bottom:22px; border-bottom:1px solid #f1f3f9;">
+              <div style="flex-shrink:0; width:34px; height:34px; border-radius:50%; background:#0084FF; color:#fff; font-weight:700; font-size:0.85rem; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 10px rgba(0,132,255,0.35);">1</div>
+              <div><h4 style="font-weight:700; font-size:0.95rem; margin-bottom:4px;">Ayez une Page Facebook</h4><p style="color:#6b7280; font-size:0.88rem; line-height:1.6;">La Page où vos clients vous contactent, gratuite sur facebook.com/pages.</p></div>
+            </div>
+            <div style="display:flex; gap:16px; padding-bottom:22px; margin-bottom:22px; border-bottom:1px solid #f1f3f9;">
+              <div style="flex-shrink:0; width:34px; height:34px; border-radius:50%; background:#0084FF; color:#fff; font-weight:700; font-size:0.85rem; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 10px rgba(0,132,255,0.35);">2</div>
+              <div><h4 style="font-weight:700; font-size:0.95rem; margin-bottom:4px;">Ajoutez Messenger à l'app Meta</h4><p style="color:#6b7280; font-size:0.88rem; line-height:1.6;">La même app Meta que WhatsApp fonctionne aussi ici.</p></div>
+            </div>
+            <div style="display:flex; gap:16px; padding-bottom:22px; margin-bottom:22px; border-bottom:1px solid #f1f3f9;">
+              <div style="flex-shrink:0; width:34px; height:34px; border-radius:50%; background:#0084FF; color:#fff; font-weight:700; font-size:0.85rem; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 10px rgba(0,132,255,0.35);">3</div>
+              <div><h4 style="font-weight:700; font-size:0.95rem; margin-bottom:4px;">Envoyez-nous vos accès</h4><p style="color:#6b7280; font-size:0.88rem; line-height:1.6;">On abonne votre Page aux messages, sans code de votre côté.</p></div>
+            </div>
+            <div style="display:flex; gap:16px;">
+              <div style="flex-shrink:0; width:34px; height:34px; border-radius:50%; background:linear-gradient(135deg,#0084FF,#7c3aed); color:#fff; font-weight:700; font-size:0.85rem; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 10px rgba(0,132,255,0.3);">4</div>
+              <div><h4 style="font-weight:700; font-size:0.95rem; margin-bottom:4px;">C'est en ligne 🎉</h4><p style="color:#6b7280; font-size:0.88rem; line-height:1.6;">Vos clients Messenger obtiennent déjà des réponses.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    function switchConnTab(tab) {
+      document.querySelectorAll('.conn-panel').forEach(p => p.style.display = 'none');
+      document.getElementById('conn-panel-' + tab).style.display = 'flex';
+      document.querySelectorAll('.conn-tab').forEach(b => {
+        b.style.background = 'transparent';
+        b.style.boxShadow = 'none';
+        b.style.color = '#6b7280';
+      });
+      const activeBtn = document.querySelector('.conn-tab[data-tab="' + tab + '"]');
+      activeBtn.style.background = '#fff';
+      activeBtn.style.boxShadow = '0 4px 14px rgba(0,0,0,0.08)';
+      activeBtn.style.color = '#1a1d2e';
+    }
+  </script>
 
   <div class="divider"></div>
   <section id="faq" style="padding:100px 0;">
@@ -748,6 +895,25 @@
   </section>
 
   <div class="divider"></div>
+  <section style="padding:80px 0 0;">
+    <div style="max-width:1000px; margin:0 auto; padding:0 24px;">
+      <div style="border-radius:28px; background:linear-gradient(135deg, rgba(79,141,255,0.06) 0%, rgba(139,92,246,0.06) 100%); border:1px solid rgba(79,141,255,0.15); padding:48px; display:grid; grid-template-columns:repeat(3,1fr); gap:20px; text-align:center;" class="stats-grid">
+        <div>
+          <div style="font-size:clamp(2.4rem,4.5vw,3.4rem); font-weight:900; background:linear-gradient(135deg,#4f8dff,#7c3aed); -webkit-background-clip:text; -webkit-text-fill-color:transparent; letter-spacing:-0.03em; line-height:1;">100%</div>
+          <div style="margin-top:10px; font-size:0.9rem; color:#6b7280;">des messages reçoivent une réponse</div>
+        </div>
+        <div>
+          <div style="font-size:clamp(2.4rem,4.5vw,3.4rem); font-weight:900; background:linear-gradient(135deg,#4f8dff,#7c3aed); -webkit-background-clip:text; -webkit-text-fill-color:transparent; letter-spacing:-0.03em; line-height:1;">24h/24</div>
+          <div style="margin-top:10px; font-size:0.9rem; color:#6b7280;">toujours actif, week-ends et jours fériés</div>
+        </div>
+        <div>
+          <div style="font-size:clamp(2.4rem,4.5vw,3.4rem); font-weight:900; background:linear-gradient(135deg,#4f8dff,#7c3aed); -webkit-background-clip:text; -webkit-text-fill-color:transparent; letter-spacing:-0.03em; line-height:1;">&lt; 5 sec</div>
+          <div style="margin-top:10px; font-size:0.9rem; color:#6b7280;">temps de réponse moyen</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section style="padding:80px 0;">
     <div style="max-width:1200px; margin:0 auto; padding:0 24px;">
       <div style="border-radius:28px; padding:64px; position:relative; overflow:hidden; background:linear-gradient(135deg, rgba(79,141,255,0.1) 0%, rgba(139,92,246,0.1) 50%, rgba(34,211,238,0.08) 100%); border:1px solid rgba(79,141,255,0.2);">
