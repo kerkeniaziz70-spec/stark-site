@@ -698,7 +698,7 @@
   <section id="connexion" style="padding:100px 0;">
     <div style="max-width:920px; margin:0 auto; padding:0 24px;">
       <span class="section-eyebrow">Connexion en quelques minutes</span>
-      <h2 style="font-size:clamp(2rem,4vw,3rem); font-weight:800; letter-spacing:-0.02em;">Branchez WhatsApp,<br>Instagram ou Messenger</h2>
+      <h2 style="font-size:clamp(2rem,4vw,3rem); font-weight:800; letter-spacing:-0.02em;">Branchez WhatsApp, Instagram,<br>Messenger ou Telegram</h2>
       <p style="margin-top:12px; color:#6b7280; font-size:1.05rem; max-width:640px;">Choisissez votre canal, on s'occupe du reste. La plupart des entreprises sont en ligne en moins de 10 minutes.</p>
 
       <div style="margin-top:44px; border-radius:24px; background:#fff; border:1px solid #e8ecf4; box-shadow:0 24px 70px rgba(79,141,255,0.12); overflow:hidden;">
@@ -714,6 +714,10 @@
           <button class="conn-tab" data-tab="fb" data-color="#0084FF" onclick="switchConnTab('fb')" style="flex:1; display:flex; align-items:center; justify-content:center; gap:8px; padding:13px 14px; border-radius:14px; border:none; background:transparent; font-size:0.85rem; font-weight:700; color:#6b7280; cursor:pointer; transition:all 0.2s;">
             <svg width="17" height="17" viewBox="0 0 24 24"><defs><linearGradient id="mgt" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00B2FF"/><stop offset="100%" stop-color="#B620E0"/></linearGradient></defs><path fill="url(#mgt)" d="M12 2C6.48 2 2 6.14 2 11.26c0 2.94 1.44 5.56 3.7 7.28V22l3.38-1.86c.9.25 1.87.38 2.92.38 5.52 0 10-4.14 10-9.26C22 6.14 17.52 2 12 2zm1.02 12.47-2.55-2.72-4.98 2.72 5.48-5.82 2.6 2.72 4.93-2.72-5.48 5.82z"/></svg>
             Messenger
+          </button>
+          <button class="conn-tab" data-tab="tg" data-color="#26A5E4" onclick="switchConnTab('tg')" style="flex:1; display:flex; align-items:center; justify-content:center; gap:8px; padding:13px 14px; border-radius:14px; border:none; background:transparent; font-size:0.85rem; font-weight:700; color:#6b7280; cursor:pointer; transition:all 0.2s;">
+            <svg width="17" height="17" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#26A5E4"/><path fill="#fff" d="M17.5 7.2 15.6 16.9c-.14.63-.51.79-1.03.49l-2.85-2.1-1.37 1.32c-.15.15-.28.28-.57.28l.2-2.9 5.3-4.79c.23-.2-.05-.32-.36-.11l-6.55 4.13-2.82-.88c-.61-.19-.62-.61.13-.9l11.02-4.25c.51-.19.96.12.8.92z"/></svg>
+            Telegram
           </button>
         </div>
 
@@ -733,7 +737,7 @@
             </div>
             <div style="display:flex; gap:16px;">
               <div style="flex-shrink:0; width:34px; height:34px; border-radius:50%; background:linear-gradient(135deg,#25D366,#4f8dff); color:#fff; font-weight:700; font-size:0.85rem; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 10px rgba(37,211,102,0.3);">4</div>
-              <div><h4 style="font-weight:700; font-size:0.95rem; margin-bottom:4px;">C'est en ligne 🎉</h4><p style="color:#6b7280; font-size:0.88rem; line-height:1.6;">Envoyez un message test, Stark répond déjà.</p></div>
+              <div><h4 style="font-weight:700; font-size:0.95rem; margin-bottom:4px;">Appuyez sur « Vérifier et passer en ligne »</h4><p style="color:#6b7280; font-size:0.88rem; line-height:1.6;">Stark configure le webhook pour vous et confirme avec la coche verte. Envoyez un message test, vous êtes en ligne. 🎉</p></div>
             </div>
           </div>
 
@@ -752,7 +756,7 @@
             </div>
             <div style="display:flex; gap:16px;">
               <div style="flex-shrink:0; width:34px; height:34px; border-radius:50%; background:linear-gradient(135deg,#C13584,#4f8dff); color:#fff; font-weight:700; font-size:0.85rem; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 10px rgba(193,53,132,0.3);">4</div>
-              <div><h4 style="font-weight:700; font-size:0.95rem; margin-bottom:4px;">Vos DM répondent seuls 🎉</h4><p style="color:#6b7280; font-size:0.88rem; line-height:1.6;">Stark prend le relais immédiatement sur vos messages Instagram.</p></div>
+              <div><h4 style="font-weight:700; font-size:0.95rem; margin-bottom:4px;">Ajoutez le webhook et passez en ligne</h4><p style="color:#6b7280; font-size:0.88rem; line-height:1.6;">Stark vous montre une URL de webhook et un jeton de vérification, collez-les dans Meta et abonnez-vous aux messages. Vos DM répondent désormais seuls. 🎉</p></div>
             </div>
           </div>
 
@@ -771,7 +775,26 @@
             </div>
             <div style="display:flex; gap:16px;">
               <div style="flex-shrink:0; width:34px; height:34px; border-radius:50%; background:linear-gradient(135deg,#0084FF,#7c3aed); color:#fff; font-weight:700; font-size:0.85rem; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 10px rgba(0,132,255,0.3);">4</div>
-              <div><h4 style="font-weight:700; font-size:0.95rem; margin-bottom:4px;">C'est en ligne 🎉</h4><p style="color:#6b7280; font-size:0.88rem; line-height:1.6;">Vos clients Messenger obtiennent déjà des réponses.</p></div>
+              <div><h4 style="font-weight:700; font-size:0.95rem; margin-bottom:4px;">Ajoutez le webhook et passez en ligne</h4><p style="color:#6b7280; font-size:0.88rem; line-height:1.6;">Stark vous donne l'URL de webhook et le jeton de vérification à coller dans Meta ; abonnez votre Page aux messages. Vous êtes en ligne. 🎉</p></div>
+            </div>
+          </div>
+
+          <div id="conn-panel-tg" class="conn-panel" style="display:none; flex-direction:column;">
+            <div style="display:flex; gap:16px; padding-bottom:22px; margin-bottom:22px; border-bottom:1px solid #f1f3f9;">
+              <div style="flex-shrink:0; width:34px; height:34px; border-radius:50%; background:#26A5E4; color:#fff; font-weight:700; font-size:0.85rem; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 10px rgba(38,165,228,0.35);">1</div>
+              <div><h4 style="font-weight:700; font-size:0.95rem; margin-bottom:4px;">Ouvrez BotFather sur Telegram</h4><p style="color:#6b7280; font-size:0.88rem; line-height:1.6;">Cherchez <code style="background:#f1f3f9; padding:2px 6px; border-radius:6px; font-size:0.82rem;">@BotFather</code>, envoyez <code style="background:#f1f3f9; padding:2px 6px; border-radius:6px; font-size:0.82rem;">/newbot</code>, et choisissez un nom et un identifiant pour votre bot support.</p></div>
+            </div>
+            <div style="display:flex; gap:16px; padding-bottom:22px; margin-bottom:22px; border-bottom:1px solid #f1f3f9;">
+              <div style="flex-shrink:0; width:34px; height:34px; border-radius:50%; background:#26A5E4; color:#fff; font-weight:700; font-size:0.85rem; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 10px rgba(38,165,228,0.35);">2</div>
+              <div><h4 style="font-weight:700; font-size:0.95rem; margin-bottom:4px;">Copiez le token de votre bot</h4><p style="color:#6b7280; font-size:0.88rem; line-height:1.6;">BotFather vous donne un token du type <code style="background:#f1f3f9; padding:2px 6px; border-radius:6px; font-size:0.82rem;">8291…:AAH…</code>. Collez-le dans votre tableau de bord Stark.</p></div>
+            </div>
+            <div style="display:flex; gap:16px; padding-bottom:22px; margin-bottom:22px; border-bottom:1px solid #f1f3f9;">
+              <div style="flex-shrink:0; width:34px; height:34px; border-radius:50%; background:#26A5E4; color:#fff; font-weight:700; font-size:0.85rem; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 10px rgba(38,165,228,0.35);">3</div>
+              <div><h4 style="font-weight:700; font-size:0.95rem; margin-bottom:4px;">Désactivez le mode privé (pour les groupes)</h4><p style="color:#6b7280; font-size:0.88rem; line-height:1.6;">Envoyez <code style="background:#f1f3f9; padding:2px 6px; border-radius:6px; font-size:0.82rem;">/setprivacy → Disable</code> pour que le bot puisse lire et enregistrer les réclamations dans vos groupes clients.</p></div>
+            </div>
+            <div style="display:flex; gap:16px;">
+              <div style="flex-shrink:0; width:34px; height:34px; border-radius:50%; background:linear-gradient(135deg,#26A5E4,#4f8dff); color:#fff; font-weight:700; font-size:0.85rem; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 10px rgba(38,165,228,0.3);">4</div>
+              <div><h4 style="font-weight:700; font-size:0.95rem; margin-bottom:4px;">Appuyez sur « Connecter »</h4><p style="color:#6b7280; font-size:0.88rem; line-height:1.6;">Stark relie le webhook automatiquement. Envoyez un message à votre bot ou ajoutez-le à un groupe, il est prêt instantanément. 🎉</p></div>
             </div>
           </div>
         </div>
